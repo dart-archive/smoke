@@ -1,3 +1,6 @@
+#### 0.3.0
+  * Change SUPPORTED_ARGS limit for minArgs and maxArgs method from 3 to 15.
+
 #### 0.2.1+1
   * Fix toString calls on Type instances.
 
