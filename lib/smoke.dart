@@ -8,7 +8,7 @@ library smoke;
 
 import 'src/implementation.dart' as implementation;
 
-export 'src/common.dart' show minArgs, maxArgs, SUPPORTED_ARGS;
+export 'src/common.dart' show minArgs, maxArgs, canAcceptNArgs, SUPPORTED_ARGS;
 import 'src/common.dart' show compareLists;
 
 /// Configures this library to use [objectAccessor] for all read/write/invoke

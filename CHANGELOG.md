@@ -1,3 +1,6 @@
+#### 0.3.1
+  * Add canAcceptNArgs method.
+
 #### 0.3.0
   * Change SUPPORTED_ARGS limit for minArgs and maxArgs method from 3 to 15.
 

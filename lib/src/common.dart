@@ -58,7 +58,7 @@ typedef _Func15(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o);
 /// Returns the minimum number of arguments that [f] takes as input, in other
 /// words, the total number of required arguments of [f]. If [f] expects more
 /// than [SUPPORTED_ARGS], this function returns `SUPPORTED_ARGS + 1`.
-/// 
+///
 /// For instance, the current implementation only supports calculating the
 /// number of arguments between `0` and `3`. If the function takes `4` or more,
 /// this function automatically returns `4`.
@@ -100,7 +100,7 @@ int maxArgs(Function f) {
   // about performance for functions with fewer than 4 arguments.
   if (f is! _Func2) {
     if (f is _Func1) return 1;
-    if (f is _Func0) return 0;    
+    if (f is _Func0) return 0;
     if (f is! _Func4 && f is _Func3) return 3;
     // Fall through to the slow case as the function has has maxArgs > 3.
   } else if (f is! _Func4) {
@@ -124,6 +124,48 @@ int maxArgs(Function f) {
   if (f is _Func1) return 1;
   if (f is _Func0) return 0;
   return -1;
+}
+
+/// Returns whether [f] can accept [n] arguments.
+/// This is equivalent to
+/// `n >= minArgs(f) && n <= maxArgs(f)`
+/// when [f] accepts at most [SUPPORTED_ARGS].
+bool canAcceptNArgs(Function f, int n) {
+  switch (n) {
+    case 0:
+      return f is _Func0;
+    case 1:
+      return f is _Func1;
+    case 2:
+      return f is _Func2;
+    case 3:
+      return f is _Func3;
+    case 4:
+      return f is _Func4;
+    case 5:
+      return f is _Func5;
+    case 6:
+      return f is _Func6;
+    case 7:
+      return f is _Func7;
+    case 8:
+      return f is _Func8;
+    case 9:
+      return f is _Func9;
+    case 10:
+      return f is _Func10;
+    case 11:
+      return f is _Func11;
+    case 12:
+      return f is _Func12;
+    case 13:
+      return f is _Func13;
+    case 14:
+      return f is _Func14;
+    case 15:
+      return f is _Func15;
+  }
+  return false;
 }
 
 /// Shallow comparison of two lists.
