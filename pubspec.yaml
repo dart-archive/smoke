@@ -1,7 +1,7 @@
 name: smoke
-version: 0.3.1
+version: 0.3.2-dev
 author: Polymer.dart Authors <web-ui-dev@dartlang.org>
-homepage: "https://api.dartlang.org/apidocs/channels/be/#smoke"
+homepage: https://github.com/dart-lang/smoke
 description: >
   A restricted reflective system that uses mirrors at development time, but that
   can be replaced with non-reflective calls using code generation. See README.md
@@ -17,7 +17,7 @@ transformers:
 - smoke/src/default_transformer:
     $include: lib/src/implementation.dart
 dev_dependencies:
-  unittest: ">=0.10.0 <0.11.0"
+  unittest: ">=0.10.0 <0.12.0"
   path: ">=1.0.0 <2.0.0"
   code_transformers: ">=0.2.0 <0.3.0"
 environment:
