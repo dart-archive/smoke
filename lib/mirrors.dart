@@ -152,7 +152,6 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
       if (member is! VariableMirror && member is! MethodMirror) continue;
       if (member.isStatic || member.isPrivate) continue;
       var name = member.simpleName;
-      bool isMethod = false;
       if (member is VariableMirror) {
         if (!options.includeFields) continue;
         if (options.excludeFinal && member.isFinal) continue;
@@ -169,7 +168,6 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
 
       if (member is MethodMirror && member.isRegularMethod) {
         if (!options.includeMethods) continue;
-        isMethod = true;
       }
 
       if (options.matches != null && !options.matches(name)) continue;
@@ -234,6 +232,7 @@ MethodMirror _findMethod(ClassMirror type, Symbol name) {
     if (member is MethodMirror) return member;
     type = type.superclass;
   } while (type != null);
+  return null;
 }
 
 // When recursively looking for symbols up the type-hierarchy it's generally a

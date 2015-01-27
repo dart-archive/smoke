@@ -7,7 +7,6 @@ library smoke.static;
 
 import 'dart:math' as math;
 
-import 'package:logging/logging.dart';
 import 'package:smoke/smoke.dart';
 
 import 'src/common.dart';

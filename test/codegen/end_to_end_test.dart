@@ -30,8 +30,6 @@ main(args) {
     var testCode = new File('$commonPath').readAsStringSync();
     var lib = initAnalyzer({'common.dart' : testCode})
         .libraryFor('common.dart');
-    var coreLib = lib.visibleLibraries.firstWhere(
-        (l) => l.displayName == 'dart.core');
     var generator = new SmokeCodeGenerator();
     var recorder = new Recorder(generator, _resolveImportUrl);
 
