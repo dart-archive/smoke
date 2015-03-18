@@ -19,66 +19,69 @@ abstract class _M0 {} // C & A
 final configuration = new StaticConfiguration(
     checkedMode: false,
     getters: {
-      #i: (o) => o.i,
-      #inc0: (o) => o.inc0,
-      #inc1: (o) => o.inc1,
-      #inc2: (o) => o.inc2,
-      #toString: (o) => o.toString,
-    },
+  #i: (o) => o.i,
+  #inc0: (o) => o.inc0,
+  #inc1: (o) => o.inc1,
+  #inc2: (o) => o.inc2,
+  #toString: (o) => o.toString,
+},
     setters: {
-      #i: (o, v) { o.i = v; },
-    },
+  #i: (o, v) {
+    o.i = v;
+  },
+},
     parents: {
-      smoke_0.AnnotB: smoke_0.Annot,
-      smoke_0.D: _M0,
-      smoke_0.E2: smoke_0.E,
-      smoke_0.F2: smoke_0.F,
-      _M0: smoke_0.C,
-    },
+  smoke_0.AnnotB: smoke_0.Annot,
+  smoke_0.D: _M0,
+  smoke_0.E2: smoke_0.E,
+  smoke_0.F2: smoke_0.F,
+  _M0: smoke_0.C,
+},
     declarations: {
-      smoke_0.A: {
-        #i: const Declaration(#i, int),
-        #inc0: const Declaration(#inc0, Function, kind: METHOD),
-        #inc1: const Declaration(#inc1, Function, kind: METHOD),
-        #inc2: const Declaration(#inc2, Function, kind: METHOD),
-        #j: const Declaration(#j, int),
-        #j2: const Declaration(#j2, int, kind: PROPERTY),
-      },
-      smoke_0.B: {
-        #f: const Declaration(#f, int, isFinal: true),
-        #w: const Declaration(#w, int, kind: PROPERTY),
-      },
-      smoke_0.C: {
-        #b: const Declaration(#b, smoke_0.B),
-        #inc: const Declaration(#inc, Function, kind: METHOD),
-        #x: const Declaration(#x, int),
-        #y: const Declaration(#y, String),
-      },
-      smoke_0.D: {
-        #i2: const Declaration(#i2, int, kind: PROPERTY, isFinal: true),
-        #x2: const Declaration(#x2, int, kind: PROPERTY, isFinal: true),
-      },
-      smoke_0.E: {
-        #noSuchMethod: const Declaration(#noSuchMethod, Function, kind: METHOD),
-        #y: const Declaration(#y, int, kind: PROPERTY, isFinal: true),
-      },
-      smoke_0.E2: {},
-      smoke_0.F: {
-        #staticMethod: const Declaration(#staticMethod, Function, kind: METHOD, isStatic: true),
-      },
-      smoke_0.F2: {},
-      smoke_0.G: {
-        #b: const Declaration(#b, int, annotations: const [smoke_0.a1]),
-        #d: const Declaration(#d, int, annotations: const [smoke_0.a2]),
-      },
-      _M0: {
-        #i: const Declaration(#i, int),
-        #inc: const Declaration(#inc, Function, kind: METHOD),
-        #inc0: const Declaration(#inc0, Function, kind: METHOD),
-        #j: const Declaration(#j, int),
-        #j2: const Declaration(#j2, int, kind: PROPERTY),
-      },
-    },
+  smoke_0.A: {
+    #i: const Declaration(#i, int),
+    #inc0: const Declaration(#inc0, Function, kind: METHOD),
+    #inc1: const Declaration(#inc1, Function, kind: METHOD),
+    #inc2: const Declaration(#inc2, Function, kind: METHOD),
+    #j: const Declaration(#j, int),
+    #j2: const Declaration(#j2, int, kind: PROPERTY),
+  },
+  smoke_0.B: {
+    #f: const Declaration(#f, int, isFinal: true),
+    #w: const Declaration(#w, int, kind: PROPERTY),
+  },
+  smoke_0.C: {
+    #b: const Declaration(#b, smoke_0.B),
+    #inc: const Declaration(#inc, Function, kind: METHOD),
+    #x: const Declaration(#x, int),
+    #y: const Declaration(#y, String),
+  },
+  smoke_0.D: {
+    #i2: const Declaration(#i2, int, kind: PROPERTY, isFinal: true),
+    #x2: const Declaration(#x2, int, kind: PROPERTY, isFinal: true),
+  },
+  smoke_0.E: {
+    #noSuchMethod: const Declaration(#noSuchMethod, Function, kind: METHOD),
+    #y: const Declaration(#y, int, kind: PROPERTY, isFinal: true),
+  },
+  smoke_0.E2: {},
+  smoke_0.F: {
+    #staticMethod: const Declaration(#staticMethod, Function,
+        kind: METHOD, isStatic: true),
+  },
+  smoke_0.F2: {},
+  smoke_0.G: {
+    #b: const Declaration(#b, int, annotations: const [smoke_0.a1]),
+    #d: const Declaration(#d, int, annotations: const [smoke_0.a2]),
+  },
+  _M0: {
+    #i: const Declaration(#i, int),
+    #inc: const Declaration(#inc, Function, kind: METHOD),
+    #inc0: const Declaration(#inc0, Function, kind: METHOD),
+    #j: const Declaration(#j, int),
+    #j2: const Declaration(#j2, int, kind: PROPERTY),
+  },
+},
     staticMethods: {},
     names: {});
 

@@ -31,8 +31,8 @@ class DefaultTransformer extends Transformer {
       // Note: this rewrite is highly-coupled with how implementation.dart is
       // written. Make sure both are updated in sync.
       transform.addOutput(new Asset.fromString(id, code
-          .replaceAll(new RegExp('new Reflective[^;]*;'),
-              'throwNotConfiguredError();')
+          .replaceAll(
+              new RegExp('new Reflective[^;]*;'), 'throwNotConfiguredError();')
           .replaceAll("import 'package:smoke/mirrors.dart';", '')));
     });
   }

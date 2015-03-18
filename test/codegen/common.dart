@@ -7,9 +7,12 @@ library smoke.test.codegen.common;
 import 'package:smoke/codegen/generator.dart';
 import 'package:unittest/unittest.dart';
 
-checkResults(SmokeCodeGenerator generator, {List<String> imports: const [],
-    String topLevel: '', String initCall}) {
-  var allImports = []..addAll(DEFAULT_IMPORTS)..addAll(imports)..add('');
+checkResults(SmokeCodeGenerator generator,
+    {List<String> imports: const [], String topLevel: '', String initCall}) {
+  var allImports = []
+    ..addAll(DEFAULT_IMPORTS)
+    ..addAll(imports)
+    ..add('');
   var genImports = new StringBuffer();
   generator.writeImports(genImports);
   expect(genImports.toString(), allImports.join('\n'));

@@ -76,7 +76,8 @@ class Recorder {
     if (type.type.isObject) return; // We don't include Object in query results.
     var id = _typeFor(type);
     var parent = type.supertype != null ? type.supertype.element : null;
-    if (options.includeInherited && parent != null &&
+    if (options.includeInherited &&
+        parent != null &&
         parent != options.includeUpTo) {
       lookupParent(type);
       runQuery(parent, options, includeAccessors: includeAccessors);
@@ -99,7 +100,6 @@ class Recorder {
   // and remove the duplication we have for mixins today.
   void _runQueryInternal(ClassElement type, TypeIdentifier id,
       QueryOptions options, bool includeAccessors, List results) {
-
     skipBecauseOfAnnotations(Element e) {
       if (options.withAnnotations == null) return false;
       return !_matchesAnnotation(e.metadata, options.withAnnotations);
@@ -115,7 +115,8 @@ class Recorder {
         if (skipBecauseOfAnnotations(f)) continue;
         if (results != null) results.add(f);
         generator.addDeclaration(id, name, _typeFor(f.type.element),
-            isField: true, isFinal: f.isFinal,
+            isField: true,
+            isFinal: f.isFinal,
             annotations: _copyAnnotations(f));
         if (includeAccessors) _addAccessors(name, !f.isFinal);
       }
@@ -133,7 +134,8 @@ class Recorder {
         if (skipBecauseOfAnnotations(a)) continue;
         if (results != null) results.add(a);
         generator.addDeclaration(id, name, _typeFor(a.type.returnType.element),
-            isProperty: true, isFinal: v.isFinal,
+            isProperty: true,
+            isFinal: v.isFinal,
             annotations: _copyAnnotations(a));
         if (includeAccessors) _addAccessors(name, !v.isFinal);
       }
@@ -146,9 +148,9 @@ class Recorder {
         if (options.matches != null && !options.matches(name)) continue;
         if (skipBecauseOfAnnotations(m)) continue;
         if (results != null) results.add(m);
-        generator.addDeclaration(id, name,
-            new TypeIdentifier('dart:core', 'Function'), isMethod: true,
-            annotations: _copyAnnotations(m));
+        generator.addDeclaration(
+            id, name, new TypeIdentifier('dart:core', 'Function'),
+            isMethod: true, annotations: _copyAnnotations(m));
         if (includeAccessors) _addAccessors(name, false);
       }
     }
@@ -160,9 +162,9 @@ class Recorder {
   /// declaration was found.  When a declaration is found, add also a symbol,
   /// getter, and setter if [includeAccessors] is true.
   bool lookupMember(ClassElement type, String name, {bool recursive: false,
-      bool includeAccessors: true, ClassElement includeUpTo}) =>
-    _lookupMemberInternal(type, _typeFor(type), name, recursive,
-        includeAccessors, includeUpTo);
+          bool includeAccessors: true, ClassElement includeUpTo}) =>
+      _lookupMemberInternal(
+          type, _typeFor(type), name, recursive, includeAccessors, includeUpTo);
 
   /// Helper for [lookupMember] that walks up the type hierarchy including mixin
   /// classes.
@@ -174,9 +176,11 @@ class Recorder {
     for (var f in type.fields) {
       if (f.displayName != name) continue;
       if (f.isSynthetic) continue; // exclude getters
-      generator.addDeclaration(id, name,
-          _typeFor(f.type.element), isField: true, isFinal: f.isFinal,
-          isStatic: f.isStatic, annotations: _copyAnnotations(f));
+      generator.addDeclaration(id, name, _typeFor(f.type.element),
+          isField: true,
+          isFinal: f.isFinal,
+          isStatic: f.isStatic,
+          annotations: _copyAnnotations(f));
       if (includeAccessors && !f.isStatic) _addAccessors(name, !f.isFinal);
       return true;
     }
@@ -188,9 +192,10 @@ class Recorder {
       if (a.displayName != name) continue;
       var v = a.variable;
       if (v is FieldElement && !v.isSynthetic) continue; // exclude fields
-      generator.addDeclaration(id, name,
-          _typeFor(a.type.returnType.element), isProperty: true,
-          isFinal: v.isFinal, isStatic: a.isStatic,
+      generator.addDeclaration(id, name, _typeFor(a.type.returnType.element),
+          isProperty: true,
+          isFinal: v.isFinal,
+          isStatic: a.isStatic,
           annotations: _copyAnnotations(a));
       if (includeAccessors && !v.isStatic) _addAccessors(name, !v.isFinal);
       return true;
@@ -198,9 +203,11 @@ class Recorder {
 
     for (var m in type.methods) {
       if (m.displayName != name) continue;
-      generator.addDeclaration(id, name,
-          new TypeIdentifier('dart:core', 'Function'), isMethod: true,
-          isStatic: m.isStatic, annotations: _copyAnnotations(m));
+      generator.addDeclaration(
+          id, name, new TypeIdentifier('dart:core', 'Function'),
+          isMethod: true,
+          isStatic: m.isStatic,
+          annotations: _copyAnnotations(m));
       if (includeAccessors) {
         if (m.isStatic) {
           generator.addStaticMethod(id, name);
@@ -220,14 +227,14 @@ class Recorder {
       for (var m in type.mixins) {
         var mixinClass = m.element;
         var mixinId = _mixins[parentId][mixinClass];
-        if (_lookupMemberInternal(mixinClass, mixinId, name, false,
-              includeAccessors, includeUpTo)) {
+        if (_lookupMemberInternal(
+            mixinClass, mixinId, name, false, includeAccessors, includeUpTo)) {
           return true;
         }
         parentId = mixinId;
       }
-      return _lookupMemberInternal(parent, parentId, name, true,
-          includeAccessors, includeUpTo);
+      return _lookupMemberInternal(
+          parent, parentId, name, true, includeAccessors, includeUpTo);
     }
     return false;
   }
@@ -291,8 +298,10 @@ class Recorder {
       return new ConstExpression.string(expression.stringValue);
     }
 
-    if (expression is BooleanLiteral || expression is DoubleLiteral ||
-        expression is IntegerLiteral || expression is NullLiteral) {
+    if (expression is BooleanLiteral ||
+        expression is DoubleLiteral ||
+        expression is IntegerLiteral ||
+        expression is NullLiteral) {
       return new CodeAsConstExpression("${(expression as dynamic).value}");
     }
 
@@ -328,8 +337,8 @@ class Recorder {
 /// listed in [queryAnnotations]. This is equivalent to the check done in
 /// `src/common.dart#matchesAnnotation`, except that this is applied to
 /// static metadata as it was provided by the analyzer.
-bool _matchesAnnotation(Iterable<ElementAnnotation> metadata,
-    Iterable<Element> queryAnnotations) {
+bool _matchesAnnotation(
+    Iterable<ElementAnnotation> metadata, Iterable<Element> queryAnnotations) {
   for (var meta in metadata) {
     var element = meta.element;
     var exp;
@@ -386,15 +395,10 @@ class QueryOptions {
   /// that match will be included.
   final NameMatcher matches;
 
-  const QueryOptions({
-      this.includeFields: true,
-      this.includeProperties: true,
-      this.includeInherited: true,
-      this.includeUpTo: null,
-      this.excludeFinal: false,
-      this.includeMethods: false,
-      this.withAnnotations: null,
-      this.matches: null});
+  const QueryOptions({this.includeFields: true, this.includeProperties: true,
+      this.includeInherited: true, this.includeUpTo: null,
+      this.excludeFinal: false, this.includeMethods: false,
+      this.withAnnotations: null, this.matches: null});
 }
 
 /// Predicate that tells whether [name] should be included in query results.

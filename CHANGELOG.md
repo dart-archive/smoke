@@ -1,3 +1,6 @@
+#### 0.3.1+1
+  * Updated dependency versions.
+
 #### 0.3.1
   * Add canAcceptNArgs method.
 

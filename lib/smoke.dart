@@ -39,9 +39,8 @@ void write(Object object, Symbol field, value) =>
 /// of formal parameters by either adding nulls for missing arguments, or by
 /// truncating the list.
 invoke(receiver, Symbol method, List args,
-    {Map namedArgs, bool adjust: false}) =>
-    implementation.objectAccessor.invoke(
-        receiver, method, args, namedArgs: namedArgs, adjust: adjust);
+    {Map namedArgs, bool adjust: false}) => implementation.objectAccessor
+    .invoke(receiver, method, args, namedArgs: namedArgs, adjust: adjust);
 
 /// Tells whether [type] is transitively a subclass of [supertype].
 bool isSubclassOf(Type type, Type supertype) =>
@@ -126,26 +125,21 @@ class QueryOptions {
   /// methods that match the predicate.
   final NameMatcher matches;
 
-  const QueryOptions({
-      this.includeFields: true,
-      this.includeProperties: true,
-      this.includeInherited: true,
-      this.includeUpTo: Object,
-      this.excludeFinal: false,
-      this.includeMethods: false,
-      this.withAnnotations: null,
-      this.matches: null});
+  const QueryOptions({this.includeFields: true, this.includeProperties: true,
+      this.includeInherited: true, this.includeUpTo: Object,
+      this.excludeFinal: false, this.includeMethods: false,
+      this.withAnnotations: null, this.matches: null});
 
   String toString() => (new StringBuffer()
-      ..write('(options:')
-      ..write(includeFields ? 'fields ' : '')
-      ..write(includeProperties ? 'properties ' : '')
-      ..write(includeMethods ? 'methods ' : '')
-      ..write(includeInherited ? 'inherited ' : '_')
-      ..write(excludeFinal ? 'no finals ' : '')
-      ..write('annotations: $withAnnotations')
-      ..write(matches != null ? 'with matcher' : '')
-      ..write(')')).toString();
+    ..write('(options:')
+    ..write(includeFields ? 'fields ' : '')
+    ..write(includeProperties ? 'properties ' : '')
+    ..write(includeMethods ? 'methods ' : '')
+    ..write(includeInherited ? 'inherited ' : '_')
+    ..write(excludeFinal ? 'no finals ' : '')
+    ..write('annotations: $withAnnotations')
+    ..write(matches != null ? 'with matcher' : '')
+    ..write(')')).toString();
 }
 
 /// Used to filter query results based on a predicate on [name]. Returns true if
@@ -188,20 +182,23 @@ class Declaration {
       this.isFinal: false, this.isStatic: false, this.annotations: const []});
 
   int get hashCode => name.hashCode;
-  operator ==(other) => other is Declaration && name == other.name &&
-      kind == other.kind && isFinal == other.isFinal &&
-      type == other.type && isStatic == other.isStatic &&
+  operator ==(other) => other is Declaration &&
+      name == other.name &&
+      kind == other.kind &&
+      isFinal == other.isFinal &&
+      type == other.type &&
+      isStatic == other.isStatic &&
       compareLists(annotations, other.annotations);
 
   String toString() {
     return (new StringBuffer()
-        ..write('(declaration ')
-        ..write(name)
-        ..write(isProperty ? ' (property) ' : ' (method) ')
-        ..write(isFinal ? 'final ' : '')
-        ..write(isStatic ? 'static ' : '')
-        ..write(annotations)
-        ..write(')')).toString();
+      ..write('(declaration ')
+      ..write(name)
+      ..write(isProperty ? ' (property) ' : ' (method) ')
+      ..write(isFinal ? 'final ' : '')
+      ..write(isStatic ? 'static ' : '')
+      ..write(annotations)
+      ..write(')')).toString();
   }
 }
 
@@ -220,7 +217,6 @@ const PROPERTY = const DeclarationKind(1);
 /// Declaration kind used to denote a method.
 const METHOD = const DeclarationKind(2);
 
-
 /// A service that provides a way to implement simple operations on objects like
 /// read, write, and invoke.
 abstract class ObjectAccessorService {
@@ -236,7 +232,6 @@ abstract class ObjectAccessorService {
   invoke(Object object, Symbol method, List args,
       {Map namedArgs, bool adjust: false});
 }
-
 
 /// A service that provides partial inspection into Dart types.
 abstract class TypeInspectorService {
@@ -262,8 +257,7 @@ abstract class TypeInspectorService {
   List<Declaration> query(Type type, QueryOptions options);
 }
 
-
-/// A service that converts between [Symbol]s and [String]s. 
+/// A service that converts between [Symbol]s and [String]s.
 abstract class SymbolConverterService {
   /// Returns the name associated with a [symbol].
   String symbolToName(Symbol symbol);

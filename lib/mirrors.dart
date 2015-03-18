@@ -21,7 +21,6 @@ useMirrors() {
 
 var _logger = new Logger('smoke.mirrors');
 
-
 /// Implements [ObjectAccessorService] using mirrors.
 class ReflectiveObjectAccessorService implements ObjectAccessorService {
   read(Object object, Symbol name) => reflect(object).getField(name).reflectee;
@@ -142,7 +141,7 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   List<Declaration> _query(ClassMirror cls, QueryOptions options) {
-    final visitParent = options.includeInherited && cls.superclass != null && 
+    final visitParent = options.includeInherited && cls.superclass != null &&
         // TODO(sigmund): use _toType(cls.superclass) != options.includeUpTo
         // when dartbug.com/16925 gets fixed (_toType fails in dart2js if
         // applied to classes with type-arguments).
@@ -172,8 +171,7 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
 
       if (options.matches != null && !options.matches(name)) continue;
 
-      var annotations =
-          member.metadata.map((m) => m.reflectee).toList();
+      var annotations = member.metadata.map((m) => m.reflectee).toList();
       if (options.withAnnotations != null &&
           !matchesAnnotation(annotations, options.withAnnotations)) {
         continue;
@@ -199,12 +197,10 @@ class ReflectiveSymbolConverterService implements SymbolConverterService {
   Symbol nameToSymbol(String name) => new Symbol(name);
 }
 
-
 // TODO(jmesserly): workaround for:
 // https://code.google.com/p/dart/issues/detail?id=10029
 Symbol _setterName(Symbol getter) =>
     new Symbol('${MirrorSystem.getName(getter)}=');
-
 
 ClassMirror _safeSuperclass(ClassMirror type) {
   try {
@@ -280,10 +276,10 @@ class _MirrorDeclaration implements Declaration {
 
   /// If this is a property, whether it's read only (final fields or properties
   /// with no setter).
-  bool get isFinal =>
-      (_original is VariableMirror && _original.isFinal) ||
-      (_original is MethodMirror && _original.isGetter &&
-           !_hasSetter(_cls, _original));
+  bool get isFinal => (_original is VariableMirror && _original.isFinal) ||
+      (_original is MethodMirror &&
+          _original.isGetter &&
+          !_hasSetter(_cls, _original));
 
   /// If this is a property, it's declared type (including dynamic if it's not
   /// declared). For methods, the returned type.
@@ -291,8 +287,8 @@ class _MirrorDeclaration implements Declaration {
     if (_original is MethodMirror && _original.isRegularMethod) {
       return Function;
     }
-    var typeMirror = _original is VariableMirror ? _original.type
-        : _original.returnType;
+    var typeMirror =
+        _original is VariableMirror ? _original.type : _original.returnType;
     return _toType(typeMirror);
   }
 
@@ -303,17 +299,20 @@ class _MirrorDeclaration implements Declaration {
   List get annotations => _original.metadata.map((a) => a.reflectee).toList();
 
   int get hashCode => name.hashCode;
-  operator ==(other) => other is Declaration && name == other.name &&
-      kind == other.kind && isFinal == other.isFinal &&
-      type == other.type && isStatic == other.isStatic &&
+  operator ==(other) => other is Declaration &&
+      name == other.name &&
+      kind == other.kind &&
+      isFinal == other.isFinal &&
+      type == other.type &&
+      isStatic == other.isStatic &&
       compareLists(annotations, other.annotations);
   String toString() => (new StringBuffer()
-      ..write('(mirror-based-declaration ')
-      ..write(name)
-      ..write(isField ? ' (field) '
-          : (isProperty ? ' (property) ' : ' (method) '))
-      ..write(isFinal ? 'final ' : '')
-      ..write(isStatic ? 'static ' : '')
-      ..write(annotations)
-      ..write(')')).toString();
+    ..write('(mirror-based-declaration ')
+    ..write(name)
+    ..write(
+        isField ? ' (field) ' : (isProperty ? ' (property) ' : ' (method) '))
+    ..write(isFinal ? 'final ' : '')
+    ..write(isStatic ? 'static ' : '')
+    ..write(annotations)
+    ..write(')')).toString();
 }

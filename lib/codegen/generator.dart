@@ -53,18 +53,24 @@ class SmokeCodeGenerator {
   final Map<String, String> _libraryPrefix = {};
 
   /// Register that [name] is used as a getter in the code.
-  void addGetter(String name) { _getters.add(name); }
+  void addGetter(String name) {
+    _getters.add(name);
+  }
 
   /// Register that [name] is used as a setter in the code.
-  void addSetter(String name) { _setters.add(name); }
+  void addSetter(String name) {
+    _setters.add(name);
+  }
 
   /// Register that [name] might be needed as a symbol.
-  void addSymbol(String name) { _names.add(name); }
+  void addSymbol(String name) {
+    _names.add(name);
+  }
 
   /// Register that `cls.name` is used as a static method in the code.
   void addStaticMethod(TypeIdentifier cls, String name) {
-    var methods = _staticMethods.putIfAbsent(cls,
-        () => new SplayTreeSet<String>());
+    var methods =
+        _staticMethods.putIfAbsent(cls, () => new SplayTreeSet<String>());
     _addLibrary(cls.importUrl);
     methods.add(name);
   }
@@ -102,8 +108,8 @@ class SmokeCodeGenerator {
           'following: a field, a property, or a method.');
     }
     var kind = isField ? 'FIELD' : isProperty ? 'PROPERTY' : 'METHOD';
-    _declarations.putIfAbsent(cls,
-        () => new SplayTreeMap<String, _DeclarationCode>());
+    _declarations.putIfAbsent(
+        cls, () => new SplayTreeMap<String, _DeclarationCode>());
     _addLibrary(cls.importUrl);
     var map = _declarations[cls];
 
@@ -114,8 +120,8 @@ class SmokeCodeGenerator {
     }
 
     _addLibrary(type.importUrl);
-    var decl = new _DeclarationCode(name, type, kind, isFinal, isStatic,
-        annotations);
+    var decl =
+        new _DeclarationCode(name, type, kind, isFinal, isStatic, annotations);
     if (map.containsKey(name) && map[name] != decl) {
       throw new StateError('$type.$name already has a different declaration'
           ' (${map[name]} instead of $decl).');
@@ -128,8 +134,8 @@ class SmokeCodeGenerator {
   /// member in this class might be intentional and not an error.
   void addEmptyDeclaration(TypeIdentifier type) {
     _addLibrary(type.importUrl);
-    _declarations.putIfAbsent(type,
-        () => new SplayTreeMap<String, _DeclarationCode>());
+    _declarations.putIfAbsent(
+        type, () => new SplayTreeMap<String, _DeclarationCode>());
   }
 
   /// Writes to [buffer] a line for each import that is needed by the generated
@@ -148,12 +154,11 @@ class SmokeCodeGenerator {
   /// superclasses.
   void writeTopLevelDeclarations(StringBuffer buffer) {
     var types = new Set()
-        ..addAll(_parents.keys)
-        ..addAll(_parents.values)
-        ..addAll(_declarations.keys)
-        ..addAll(_declarations.values.expand(
-              (m) => m.values.map((d) => d.type)))
-        ..removeWhere((t) => t.importUrl != null);
+      ..addAll(_parents.keys)
+      ..addAll(_parents.values)
+      ..addAll(_declarations.keys)
+      ..addAll(_declarations.values.expand((m) => m.values.map((d) => d.type)))
+      ..removeWhere((t) => t.importUrl != null);
     for (var type in types) {
       buffer.write('abstract class ${type.name} {}');
       if (type.comment != null) buffer.write(' // ${type.comment}');
@@ -190,8 +195,8 @@ class SmokeCodeGenerator {
       args['getters'] = _getters.map((n) => '${_symbol(n)}: (o) => o.$n');
     }
     if (_setters.isNotEmpty) {
-      args['setters'] = _setters.map(
-          (n) => '${_symbol(n)}: (o, v) { o.$n = v; }');
+      args['setters'] =
+          _setters.map((n) => '${_symbol(n)}: (o, v) { o.$n = v; }');
     }
 
     if (_parents.isNotEmpty) {
@@ -199,7 +204,7 @@ class SmokeCodeGenerator {
       _parents.forEach((child, parent) {
         var parent = _parents[child];
         parentsMap.add('${child.asCode(_libraryPrefix)}: '
-          '${parent.asCode(_libraryPrefix)}');
+            '${parent.asCode(_libraryPrefix)}');
       });
       args['parents'] = parentsMap;
     }
@@ -208,8 +213,8 @@ class SmokeCodeGenerator {
       var declarations = [];
       _declarations.forEach((type, members) {
         final sb = new StringBuffer()
-            ..write(type.asCode(_libraryPrefix))
-            ..write(': ');
+          ..write(type.asCode(_libraryPrefix))
+          ..write(': ');
         if (members.isEmpty) {
           sb.write('{}');
         } else {
@@ -230,8 +235,8 @@ class SmokeCodeGenerator {
       _staticMethods.forEach((type, members) {
         var className = type.asCode(_libraryPrefix);
         final sb = new StringBuffer()
-            ..write(className)
-            ..write(': ');
+          ..write(className)
+          ..write(': ');
         if (members.isEmpty) {
           sb.write('{}');
         } else {
@@ -250,8 +255,9 @@ class SmokeCodeGenerator {
       args['names'] = _names.map((n) => "${_symbol(n)}: r'$n'");
     }
 
-    buffer..writeln('new StaticConfiguration(')
-        ..write('${spaces}checkedMode: false');
+    buffer
+      ..writeln('new StaticConfiguration(')
+      ..write('${spaces}checkedMode: false');
 
     args.forEach((name, mapContents) {
       buffer.writeln(',');
@@ -285,8 +291,8 @@ class _DeclarationCode extends ConstExpression {
       this.annotations);
 
   List<String> get librariesUsed => []
-      ..addAll(type.librariesUsed)
-      ..addAll(annotations.expand((a) => a.librariesUsed));
+    ..addAll(type.librariesUsed)
+    ..addAll(annotations.expand((a) => a.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
@@ -311,8 +317,11 @@ class _DeclarationCode extends ConstExpression {
 
   String toString() =>
       '(decl: $type.$name - $kind, $isFinal, $isStatic, $annotations)';
-  operator== (other) => other is _DeclarationCode && name == other.name && 
-      type == other.type && kind == other.kind && isFinal == other.isFinal &&
+  operator ==(other) => other is _DeclarationCode &&
+      name == other.name &&
+      type == other.type &&
+      kind == other.kind &&
+      isFinal == other.isFinal &&
       isStatic == other.isStatic &&
       compareLists(annotations, other.annotations);
   int get hashCode => name.hashCode + (31 * type.hashCode);
@@ -345,8 +354,8 @@ abstract class ConstExpression {
 
   /// Create an expression of the form `prefix.Constructor(v1, v2, p3: v3)`.
   factory ConstExpression.constructor(String importUrl, String name,
-      List<ConstExpression> positionalArgs,
-      Map<String, ConstExpression> namedArgs) =>
+          List<ConstExpression> positionalArgs,
+          Map<String, ConstExpression> namedArgs) =>
       new ConstructorExpression(importUrl, name, positionalArgs, namedArgs);
 }
 
@@ -361,7 +370,7 @@ class CodeAsConstExpression extends ConstExpression {
   String asCode(Map<String, String> libraryPrefixes) => code;
 
   String toString() => '(code: $code)';
-  operator== (other) => other is CodeAsConstExpression && code == other.code;
+  operator ==(other) => other is CodeAsConstExpression && code == other.code;
   int get hashCode => code.hashCode;
 }
 
@@ -380,8 +389,9 @@ class TopLevelIdentifier extends ConstExpression {
   }
 
   String toString() => '(identifier: $importUrl, $name)';
-  operator== (other) => other is TopLevelIdentifier && name == other.name
-      && importUrl == other.importUrl;
+  operator ==(other) => other is TopLevelIdentifier &&
+      name == other.name &&
+      importUrl == other.importUrl;
   int get hashCode => 31 * importUrl.hashCode + name.hashCode;
 }
 
@@ -391,12 +401,12 @@ class ConstructorExpression extends ConstExpression {
   final String name;
   final List<ConstExpression> positionalArgs;
   final Map<String, ConstExpression> namedArgs;
-  ConstructorExpression(this.importUrl, this.name, this.positionalArgs,
-      this.namedArgs);
+  ConstructorExpression(
+      this.importUrl, this.name, this.positionalArgs, this.namedArgs);
 
   List<String> get librariesUsed => [importUrl]
-      ..addAll(positionalArgs.expand((e) => e.librariesUsed))
-      ..addAll(namedArgs.values.expand((e) => e.librariesUsed));
+    ..addAll(positionalArgs.expand((e) => e.librariesUsed))
+    ..addAll(namedArgs.values.expand((e) => e.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
@@ -422,13 +432,13 @@ class ConstructorExpression extends ConstExpression {
   }
 
   String toString() => '(ctor: $importUrl, $name, $positionalArgs, $namedArgs)';
-  operator== (other) => other is ConstructorExpression && name == other.name
-      && importUrl == other.importUrl &&
+  operator ==(other) => other is ConstructorExpression &&
+      name == other.name &&
+      importUrl == other.importUrl &&
       compareLists(positionalArgs, other.positionalArgs) &&
       compareMaps(namedArgs, other.namedArgs);
   int get hashCode => 31 * importUrl.hashCode + name.hashCode;
 }
-
 
 /// Describes a type identifier, with the library URL where the type is defined.
 // TODO(sigmund): consider adding support for imprecise TypeIdentifiers, which
@@ -450,24 +460,26 @@ class TypeIdentifier extends TopLevelIdentifier
 
   String toString() => '(type-identifier: $importUrl, $name, $comment)';
   bool operator ==(other) => other is TypeIdentifier &&
-      importUrl == other.importUrl && name == other.name &&
+      importUrl == other.importUrl &&
+      name == other.name &&
       comment == other.comment;
   int get hashCode => super.hashCode;
 }
 
 /// Default set of imports added by [SmokeCodeGenerator].
 const DEFAULT_IMPORTS = const [
-    "import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;",
-    "import 'package:smoke/static.dart' show "
-        "useGeneratedCode, StaticConfiguration;",
-  ];
+  "import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;",
+  "import 'package:smoke/static.dart' show "
+      "useGeneratedCode, StaticConfiguration;",
+];
 
 _symbol(String name) {
   if (!_publicSymbolPattern.hasMatch(name)) {
     throw new StateError('invalid symbol name: "$name"');
   }
   return _literalSymbolPattern.hasMatch(name)
-      ? '#$name' : "const Symbol('$name')";
+      ? '#$name'
+      : "const Symbol('$name')";
 }
 
 // TODO(sigmund): is this included in some library we can import? I derived the
@@ -486,8 +498,8 @@ const String _publicIdentifierRE =
     r'(?!' '$_reservedWordRE' r'\b(?!\$))[a-zA-Z$][\w$]*';
 
 /// Pattern that matches operators only.
-final RegExp _literalSymbolPattern = new RegExp(
-    '^(?:$_publicIdentifierRE(?:\$|[.](?!\$)))+?\$');
+final RegExp _literalSymbolPattern =
+    new RegExp('^(?:$_publicIdentifierRE(?:\$|[.](?!\$)))+?\$');
 
 /// Operator names allowed as symbols. The name of the oeprators is the same as
 /// the operator itself except for unary minus, where the name is "unary-".

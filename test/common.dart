@@ -257,39 +257,39 @@ main() {
     });
 
     test('inherited fields only', () {
-      var options = new smoke.QueryOptions(includeInherited: true,
-          includeProperties: false);
+      var options = new smoke.QueryOptions(
+          includeInherited: true, includeProperties: false);
       var res = smoke.query(D, options);
       _checkQuery(res, [#x, #y, #b, #i, #j]);
     });
 
     test('exact annotation', () {
-      var options = new smoke.QueryOptions(includeInherited: true,
-          withAnnotations: const [a1]);
+      var options = new smoke.QueryOptions(
+          includeInherited: true, withAnnotations: const [a1]);
       var res = smoke.query(H, options);
       _checkQuery(res, [#b, #f, #g]);
 
-      options = new smoke.QueryOptions(includeInherited: true,
-          withAnnotations: const [a2]);
+      options = new smoke.QueryOptions(
+          includeInherited: true, withAnnotations: const [a2]);
       res = smoke.query(H, options);
       _checkQuery(res, [#d, #h]);
 
-      options = new smoke.QueryOptions(includeInherited: true,
-          withAnnotations: const [a1, a2]);
+      options = new smoke.QueryOptions(
+          includeInherited: true, withAnnotations: const [a1, a2]);
       res = smoke.query(H, options);
       _checkQuery(res, [#b, #d, #f, #g, #h]);
     });
 
     test('type annotation', () {
-      var options = new smoke.QueryOptions(includeInherited: true,
-          withAnnotations: const [Annot]);
+      var options = new smoke.QueryOptions(
+          includeInherited: true, withAnnotations: const [Annot]);
       var res = smoke.query(H, options);
       _checkQuery(res, [#b, #f, #g, #i]);
     });
 
     test('mixed annotations (type and exact)', () {
-      var options = new smoke.QueryOptions(includeInherited: true,
-          withAnnotations: const [a2, Annot]);
+      var options = new smoke.QueryOptions(
+          includeInherited: true, withAnnotations: const [a2, Annot]);
       var res = smoke.query(H, options);
       _checkQuery(res, [#b, #d, #f, #g, #h, #i]);
     });
@@ -314,20 +314,32 @@ class A {
   int i = 42;
   int j = 44;
   int get j2 => j;
-  void set j2(int v) { j = v; }
-  void inc0() { i++; }
-  void inc1(int v) { i = i + (v == null ? -10 : v); }
-  void inc2([int v]) { i = i + (v == null ? -10 : v); }
+  void set j2(int v) {
+    j = v;
+  }
+  void inc0() {
+    i++;
+  }
+  void inc1(int v) {
+    i = i + (v == null ? -10 : v);
+  }
+  void inc2([int v]) {
+    i = i + (v == null ? -10 : v);
+  }
 
   static int staticValue = 42;
-  static void staticInc() { staticValue++; }
+  static void staticInc() {
+    staticValue++;
+  }
 }
 
 class B {
   final int f = 3;
   int _w;
   int get w => _w;
-  set w(int v) { _w = v; }
+  set w(int v) {
+    _w = v;
+  }
 
   String z;
   A a;
@@ -350,7 +362,6 @@ class C {
   C(this.x, this.y, this.b);
 }
 
-
 class D extends C with A {
   int get x2 => x;
   int get i2 => i;
@@ -359,7 +370,7 @@ class D extends C with A {
 }
 
 class E {
-  set x(int v) { }
+  set x(int v) {}
   int get y => 1;
 
   noSuchMethod(i) => y;
@@ -373,13 +384,18 @@ class F {
 
 class F2 extends F {}
 
-class Annot { const Annot(); }
-class AnnotB extends Annot { const AnnotB(); }
-class AnnotC { const AnnotC({bool named: false}); }
+class Annot {
+  const Annot();
+}
+class AnnotB extends Annot {
+  const AnnotB();
+}
+class AnnotC {
+  const AnnotC({bool named: false});
+}
 const a1 = const Annot();
 const a2 = 32;
 const a3 = const AnnotB();
-
 
 class G {
   int a;

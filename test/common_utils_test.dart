@@ -25,11 +25,14 @@ main() {
   test('compareLists unordered', () {
     expect(compareLists([1, 1, 1], [1, 2, 3], unordered: true), isFalse);
     expect(compareLists([2, 3, 1], [1, 2, 3], unordered: true), isTrue);
-    expect(compareLists([1, 1, 2, 3, 4, 2], [2, 2, 1, 1, 3, 4],
-        unordered: true), isTrue);
-    expect(compareLists([1, 4, 2, 3, 1, 2], [2, 2, 1, 1, 3, 4],
-        unordered: true), isTrue);
-    expect(compareLists([1, 1, 2, 3, 4, 1], [2, 2, 1, 1, 3, 4],
-        unordered: true), isFalse);
+    expect(
+        compareLists([1, 1, 2, 3, 4, 2], [2, 2, 1, 1, 3, 4], unordered: true),
+        isTrue);
+    expect(
+        compareLists([1, 4, 2, 3, 1, 2], [2, 2, 1, 1, 3, 4], unordered: true),
+        isTrue);
+    expect(
+        compareLists([1, 1, 2, 3, 4, 1], [2, 2, 1, 1, 3, 4], unordered: true),
+        isFalse);
   });
 }

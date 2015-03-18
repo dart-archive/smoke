@@ -26,9 +26,9 @@ class LibraryProvider {
 LibraryProvider initAnalyzer(Map<String, String> contents) {
   var analyzer = AnalysisEngine.instance.createAnalysisContext();
   var options = new AnalysisOptionsImpl()
-      ..cacheSize = 256
-      ..preserveComments = false
-      ..analyzeFunctionBodies = false;
+    ..cacheSize = 256
+    ..preserveComments = false
+    ..analyzeFunctionBodies = false;
   analyzer.analysisOptions = options;
   var sdk = new DirectoryBasedDartSdk(new JavaFile(testingDartSdkDirectory));
   sdk.context.analysisOptions = options;
@@ -41,9 +41,8 @@ LibraryProvider initAnalyzer(Map<String, String> contents) {
   });
   analyzer.applyChanges(changes);
 
-  analyzer.sourceFactory = new SourceFactory([
-      new DartUriResolver(sdk),
-      new _SimpleUriResolver(allSources)]);
+  analyzer.sourceFactory = new SourceFactory(
+      [new DartUriResolver(sdk), new _SimpleUriResolver(allSources)]);
 
   return new LibraryProvider(analyzer, allSources);
 }
@@ -70,8 +69,8 @@ class _SimpleSource extends Source {
   _SimpleSource(this.path, this.rawContents, this.allSources)
       : uri = Uri.parse('file:///path');
 
-  operator ==(other) => other is _SimpleSource &&
-      rawContents == other.rawContents;
+  operator ==(other) =>
+      other is _SimpleSource && rawContents == other.rawContents;
   int get hashCode => rawContents.hashCode;
 
   bool exists() => true;

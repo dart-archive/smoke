@@ -39,18 +39,13 @@ class StaticConfiguration {
   /// A map from strings to symbols (the reverse of [names]).
   final Map<String, Symbol> _symbols = {};
 
-
   /// Whether to check for missing declarations, otherwise, return default
   /// values (for example a missing parent class can be treated as Object)
   final bool checkedMode;
 
-  StaticConfiguration({
-      Map<Symbol, Getter> getters,
-      Map<Symbol, Setter> setters,
-      Map<Type, Type> parents,
-      Map<Type, Map<Symbol, Declaration>> declarations,
-      Map<Type, Map<Symbol, Function>> staticMethods,
-      Map<Symbol, String> names,
+  StaticConfiguration({Map<Symbol, Getter> getters, Map<Symbol, Setter> setters,
+      Map<Type, Type> parents, Map<Type, Map<Symbol, Declaration>> declarations,
+      Map<Type, Map<Symbol, Function>> staticMethods, Map<Symbol, String> names,
       this.checkedMode: true})
       : getters = getters != null ? getters : {},
         setters = setters != null ? setters : {},
@@ -58,7 +53,9 @@ class StaticConfiguration {
         declarations = declarations != null ? declarations : {},
         staticMethods = staticMethods != null ? staticMethods : {},
         names = names != null ? names : {} {
-    this.names.forEach((k, v) { _symbols[v] = k; });
+    this.names.forEach((k, v) {
+      _symbols[v] = k;
+    });
   }
 
   void addAll(StaticConfiguration other) {
@@ -68,7 +65,9 @@ class StaticConfiguration {
     _nestedAddAll(declarations, other.declarations);
     _nestedAddAll(staticMethods, other.staticMethods);
     names.addAll(other.names);
-    other.names.forEach((k, v) { _symbols[v] = k; });
+    other.names.forEach((k, v) {
+      _symbols[v] = k;
+    });
   }
 
   static _nestedAddAll(Map a, Map b) {
@@ -278,7 +277,6 @@ class GeneratedSymbolConverterService implements SymbolConverterService {
   String symbolToName(Symbol symbol) => _names[symbol];
   Symbol nameToSymbol(String name) => _symbols[name];
 }
-
 
 /// Exception thrown when trynig to access something that should be there, but
 /// the code generator didn't include it.

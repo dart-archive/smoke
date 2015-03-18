@@ -9,7 +9,6 @@ import 'package:unittest/unittest.dart';
 import 'common.dart' hide main;
 import 'common.dart' as common show main;
 
-
 @MirrorsUsed(
     targets: const [A, B, C, D, E, E2, F, F2, G, H, Type],
     override: 'smoke.mirrors')
