@@ -39,7 +39,8 @@ main() {
     expect(() => smoke.invoke(a, #inc0, [1, 2, 3]), throws);
     expect(a.i, 43);
 
-    expect(() => smoke.invoke(a, #inc1, []), throws);
+    // TODO(jakemac): Restore this once http://dartbug.com/22917 is fixed.
+    // expect(() => smoke.invoke(a, #inc1, []), throws);
     expect(a.i, 43);
     smoke.invoke(a, #inc1, [4]);
     expect(a.i, 47);
