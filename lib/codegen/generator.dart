@@ -384,7 +384,12 @@ class TopLevelIdentifier extends ConstExpression {
 
   List<String> get librariesUsed => [importUrl];
   String asCode(Map<String, String> libraryPrefixes) {
-    if (importUrl == 'dart:core' || importUrl == null) return name;
+    if (importUrl == 'dart:core' || importUrl == null) {
+      // TODO(jmesserly): analyzer doesn't consider `dynamic` to be a constant,
+      // so use Object as a workaround:
+      // https://code.google.com/p/dart/issues/detail?id=22989
+      return name == 'dynamic' ? 'Object' : name;
+    }
     return '${libraryPrefixes[importUrl]}.$name';
   }
 

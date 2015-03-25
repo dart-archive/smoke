@@ -203,8 +203,8 @@ main() {
           '    checkedMode: false,\n'
           '    declarations: {\n'
           '      smoke_0.I: {\n'
-          '        #i1: const Declaration(#i1, dynamic),\n'
-          '        #i2: const Declaration(#i2, dynamic, kind: PROPERTY),\n'
+          '        #i1: const Declaration(#i1, Object),\n'
+          '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
           '      },\n'
           '    }));\n');
     });
@@ -538,8 +538,8 @@ main() {
           '    },\n'
           '    declarations: {\n'
           '      smoke_0.I: {\n'
-          '        #i1: const Declaration(#i1, dynamic),\n'
-          '        #i2: const Declaration(#i2, dynamic, kind: PROPERTY),\n'
+          '        #i1: const Declaration(#i1, Object),\n'
+          '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
           '        #i3: const Declaration(#i3, smoke_0.G, kind: PROPERTY, '
           'isFinal: true),\n'
           '        #m4: const Declaration(#m4, Function, kind: METHOD),\n'
