@@ -1,3 +1,6 @@
+#### 0.3.3
+  * Update to analyzer `<=0.26.0`.
+
 #### 0.3.2
   * Work around an issue running Dart analyzer on the generated code, if the
     `dynamic` type appeared in the output. Smoke will now use `Object` instead.
