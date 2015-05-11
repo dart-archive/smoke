@@ -1,5 +1,8 @@
+#### 0.3.3+1
+  * Update logging package to `<0.12.0`.
+
 #### 0.3.3
-  * Update to analyzer `<=0.26.0`.
+  * Update to analyzer `<0.26.0`.
 
 #### 0.3.2
   * Work around an issue running Dart analyzer on the generated code, if the
