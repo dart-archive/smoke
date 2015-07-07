@@ -295,6 +295,16 @@ main() {
       _checkQuery(res, [#b, #d, #f, #g, #h, #i]);
     });
 
+    test('overriden symbols', () {
+      var options = new smoke.QueryOptions(
+          excludeOverriden: false, includeInherited: true, includeMethods: true);
+      var res = smoke.query(J2, options);
+      _checkQuery(res, [#j, #inc]);
+      // Check that the concrete #j is there
+      expect(res[0].isFinal, false);
+      expect(res[0].isField, true);
+    });
+
     test('symbol to name', () {
       expect(smoke.symbolToName(#i), 'i');
     });
@@ -416,4 +426,14 @@ class H extends G {
 class K {
   @AnnotC(named: true) int k;
   @AnnotC() int k2;
+}
+
+abstract class J {
+  int get j;
+  inc();
+}
+
+class J2 extends J {
+  int j;
+  inc() { ++j; }
 }
