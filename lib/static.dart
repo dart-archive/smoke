@@ -243,10 +243,6 @@ class GeneratedTypeInspectorService implements TypeInspectorService {
           !matchesAnnotation(decl.annotations, options.withAnnotations)) {
         continue;
       }
-      // TODO: Change to the following to when fixing to ignore cases where
-      // static methods have the same name
-      // https://github.com/dart-lang/smoke/issues/23
-      // if ((options.excludeOverriden) && (!decl.isStatic)) {
       if (options.excludeOverriden) {
         result.retainWhere((value) => decl.name != value.name);
       }

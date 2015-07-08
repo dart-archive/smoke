@@ -179,10 +179,6 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
 
       var declaration = new _MirrorDeclaration(cls, member);
 
-      // TODO: Change to the following to when fixing to ignore cases where
-      // static methods have the same name
-      // https://github.com/dart-lang/smoke/issues/23
-      // if ((options.excludeOverriden) && (!declaration.isStatic)) {
       if (options.excludeOverriden) {
         result.retainWhere((value) => declaration.name != value.name);
       }

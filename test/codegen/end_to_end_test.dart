@@ -121,8 +121,8 @@ void main(List<String> args) {
     runQuery('K', new QueryOptions(
         includeInherited: true, withAnnotations: [lib.getType('AnnotC')]));
 
-    runQuery('J', new QueryOptions(includeMethods: true));
-    runQuery('J2', new QueryOptions(
+    runQuery('L', new QueryOptions(includeMethods: true));
+    runQuery('L2', new QueryOptions(
         includeInherited: true, includeMethods: true));
 
     var code = _createEntrypoint(generator);

@@ -237,12 +237,14 @@ main() {
       var options = new smoke.QueryOptions(includeProperties: false);
       var res = smoke.query(A, options);
       _checkQuery(res, [#i, #j]);
+      expect(res[0].isField, true);
     });
 
     test('only properties', () {
       var options = new smoke.QueryOptions(includeFields: false);
       var res = smoke.query(A, options);
       _checkQuery(res, [#j2]);
+      expect(res[0].isProperty, true);
     });
 
     test('properties and methods', () {
@@ -297,9 +299,9 @@ main() {
 
     test('overriden symbols', () {
       var options = new smoke.QueryOptions(
-          excludeOverriden: false, includeInherited: true, includeMethods: true);
-      var res = smoke.query(J2, options);
-      _checkQuery(res, [#j, #inc]);
+          excludeOverriden: true, includeInherited: true, includeMethods: true);
+      var res = smoke.query(L2, options);
+      _checkQuery(res, [#m, #incM, #n]);
       // Check that the concrete #j is there
       expect(res[0].isFinal, false);
       expect(res[0].isField, true);
@@ -428,12 +430,13 @@ class K {
   @AnnotC() int k2;
 }
 
-abstract class J {
-  int get j;
-  inc();
+abstract class L {
+  int get m;
+  incM();
 }
 
-class J2 extends J {
-  int j;
-  inc() { ++j; }
+class L2 extends L {
+  int m;
+  incM() { ++m; }
+  int n;
 }
