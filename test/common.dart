@@ -302,9 +302,10 @@ main() {
           excludeOverriden: true, includeInherited: true, includeMethods: true);
       var res = smoke.query(L2, options);
       _checkQuery(res, [#m, #incM, #n]);
-      // Check that the concrete #j is there
-      expect(res[0].isFinal, false);
-      expect(res[0].isField, true);
+      // Check that the concrete #m is there
+      var overriden = res.firstWhere((value) => value.name == #m);
+      expect(overriden.isFinal, false);
+      expect(overriden.isField, true);
     });
 
     test('symbol to name', () {
