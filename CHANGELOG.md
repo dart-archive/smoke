@@ -1,6 +1,6 @@
 #### 0.3.4
   * Add excludeOverriden to QueryOptions which removes declarations that were
-    overriden by a base class.
+    overriden within the class hierarchy.
 
 #### 0.3.3+1
   * Update logging package to `<0.12.0`.
