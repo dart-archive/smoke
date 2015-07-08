@@ -237,12 +237,14 @@ main() {
       var options = new smoke.QueryOptions(includeProperties: false);
       var res = smoke.query(A, options);
       _checkQuery(res, [#i, #j]);
+      expect(res[0].isField, true);
     });
 
     test('only properties', () {
       var options = new smoke.QueryOptions(includeFields: false);
       var res = smoke.query(A, options);
       _checkQuery(res, [#j2]);
+      expect(res[0].isProperty, true);
     });
 
     test('properties and methods', () {
@@ -293,6 +295,17 @@ main() {
           includeInherited: true, withAnnotations: const [a2, Annot]);
       var res = smoke.query(H, options);
       _checkQuery(res, [#b, #d, #f, #g, #h, #i]);
+    });
+
+    test('overriden symbols', () {
+      var options = new smoke.QueryOptions(
+          excludeOverriden: true, includeInherited: true, includeMethods: true);
+      var res = smoke.query(L2, options);
+      _checkQuery(res, [#m, #incM, #n]);
+      // Check that the concrete #m is there
+      var overriden = res.firstWhere((value) => value.name == #m);
+      expect(overriden.isFinal, false);
+      expect(overriden.isField, true);
     });
 
     test('symbol to name', () {
@@ -416,4 +429,15 @@ class H extends G {
 class K {
   @AnnotC(named: true) int k;
   @AnnotC() int k2;
+}
+
+abstract class L {
+  int get m;
+  incM();
+}
+
+class L2 extends L {
+  int m;
+  incM() { ++m; }
+  int n;
 }

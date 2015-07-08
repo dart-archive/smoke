@@ -113,6 +113,10 @@ class QueryOptions {
   /// Whether to include final fields and getter-only properties.
   final bool excludeFinal;
 
+  /// Whether to include symbols that are overriden within the subclass
+  /// (default is false).
+  final bool excludeOverriden;
+
   /// Whether to include methods (default is false).
   final bool includeMethods;
 
@@ -127,8 +131,9 @@ class QueryOptions {
 
   const QueryOptions({this.includeFields: true, this.includeProperties: true,
       this.includeInherited: true, this.includeUpTo: Object,
-      this.excludeFinal: false, this.includeMethods: false,
-      this.withAnnotations: null, this.matches: null});
+      this.excludeFinal: false, this.excludeOverriden: false,
+      this.includeMethods: false, this.withAnnotations: null,
+      this.matches: null});
 
   String toString() => (new StringBuffer()
     ..write('(options:')
@@ -137,6 +142,7 @@ class QueryOptions {
     ..write(includeMethods ? 'methods ' : '')
     ..write(includeInherited ? 'inherited ' : '_')
     ..write(excludeFinal ? 'no finals ' : '')
+    ..write(excludeOverriden ? 'no overriden ': '')
     ..write('annotations: $withAnnotations')
     ..write(matches != null ? 'with matcher' : '')
     ..write(')')).toString();

@@ -243,6 +243,9 @@ class GeneratedTypeInspectorService implements TypeInspectorService {
           !matchesAnnotation(decl.annotations, options.withAnnotations)) {
         continue;
       }
+      if (options.excludeOverriden) {
+        result.retainWhere((value) => decl.name != value.name);
+      }
       result.add(decl);
     }
     return result;

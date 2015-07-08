@@ -177,6 +177,12 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
         continue;
       }
 
+      var declaration = new _MirrorDeclaration(cls, member);
+
+      if (options.excludeOverriden) {
+        result.retainWhere((value) => declaration.name != value.name);
+      }
+
       // TODO(sigmund): should we cache parts of this declaration so we don't
       // compute them twice?  For example, this chould be `new Declaration(name,
       // type, ...)` and we could reuse what we computed above to implement the
@@ -184,7 +190,7 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
       // run into trouble with type (`type = _toType(member.type)`), dart2js
       // failed when the underlying types had type-arguments (see
       // dartbug.com/16925).
-      result.add(new _MirrorDeclaration(cls, member));
+      result.add(declaration);
     }
 
     return result;

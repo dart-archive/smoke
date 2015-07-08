@@ -74,6 +74,15 @@ final configuration = new StaticConfiguration(
     #b: const Declaration(#b, int, annotations: const [smoke_0.a1]),
     #d: const Declaration(#d, int, annotations: const [smoke_0.a2]),
   },
+  smoke_0.L: {
+    #incM: const Declaration(#incM, Function, kind: METHOD),
+    #m: const Declaration(#m, int, kind: PROPERTY, isFinal: true),
+  },
+  smoke_0.L2: {
+    #incM: const Declaration(#incM, Function, kind: METHOD),
+    #m: const Declaration(#m, int),
+    #n: const Declaration(#n, int),
+  },
   _M0: {
     #i: const Declaration(#i, int),
     #inc: const Declaration(#inc, Function, kind: METHOD),
