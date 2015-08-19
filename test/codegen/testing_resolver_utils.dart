@@ -51,7 +51,7 @@ class _SimpleUriResolver implements UriResolver {
   final Map<String, Source> allSources;
   _SimpleUriResolver(this.allSources);
 
-  Source resolveAbsolute(Uri uri) => allSources['$uri'];
+  Source resolveAbsolute(Uri uri, [Uri actualUri]) => allSources['$uri'];
 
   Source fromEncoding(UriKind kind, Uri uri) =>
       throw new UnimplementedError('fromEncoding not implemented');
