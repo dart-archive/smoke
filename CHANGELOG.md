@@ -1,3 +1,6 @@
+#### 0.3.5
+  * Update to analyzer '<0.27.0'
+
 #### 0.3.4
   * Add excludeOverriden to QueryOptions which removes declarations that were
     overriden within the class hierarchy.
