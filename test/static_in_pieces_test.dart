@@ -6,7 +6,7 @@
 /// deferred imports.
 library smoke.test.static_in_pieces_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;
 import 'package:smoke/static.dart' show useGeneratedCode, StaticConfiguration;
 import 'piece1.dart' as p1;
@@ -97,15 +97,18 @@ final configuration = new StaticConfiguration(
 main() {
   useGeneratedCode(configuration);
 
-  expect(configuration.getters[#j], isNull);
+  test('smoke', () async {
+    expect(configuration.getters[#j], isNull);
 
-  configuration.addAll(p1.configuration);
-  expect(configuration.getters[#j], isNotNull);
+    configuration.addAll(p1.configuration);
+    expect(configuration.getters[#j], isNotNull);
 
-  p2.loadLibrary().then((_) {
+    await p2.loadLibrary();
+
     expect(configuration.names[#i], isNull);
     configuration.addAll(p2.configuration);
     expect(configuration.names[#i], 'i');
-    common.main();
   });
+  
+  common.main();
 }

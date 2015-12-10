@@ -7,7 +7,7 @@ library smoke.test.codegen.recorder_test;
 import 'package:analyzer/src/generated/element.dart';
 import 'package:smoke/codegen/generator.dart';
 import 'package:smoke/codegen/recorder.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'common.dart' show checkResults;
 import 'testing_resolver_utils.dart' show initAnalyzer;

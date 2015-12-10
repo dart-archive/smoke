@@ -5,7 +5,7 @@
 library smoke.test.mirrors_test;
 
 import 'package:smoke/mirrors.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'common.dart' hide main;
 import 'common.dart' as common show main;
 

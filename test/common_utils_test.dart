@@ -5,7 +5,7 @@
 library smoke.test.common_utils;
 
 import 'package:smoke/src/common.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 main() {
   test('adjustList', () {

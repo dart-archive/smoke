@@ -5,7 +5,7 @@
 library smoke.test.codegen.common;
 
 import 'package:smoke/codegen/generator.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 checkResults(SmokeCodeGenerator generator,
     {List<String> imports: const [], String topLevel: '', String initCall}) {
