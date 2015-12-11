@@ -253,7 +253,7 @@ class Recorder {
 
   /// Copy metadata associated with the declaration of [target].
   List<ConstExpression> _copyAnnotations(Element target) {
-    var node = target.node;
+    var node = target.computeNode();
     // [node] is the initialization expression, we walk up to get to the actual
     // member declaration where the metadata is attached to.
     while (node is! ClassMember) node = node.parent;

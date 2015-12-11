@@ -7,7 +7,7 @@
 library smoke.test.common;
 
 import 'package:smoke/smoke.dart' as smoke;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 main() {
   test('read value', () {

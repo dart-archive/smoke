@@ -7,7 +7,7 @@ library smoke.test.args_test;
 
 import 'package:smoke/smoke.dart'
     show minArgs, maxArgs, canAcceptNArgs, SUPPORTED_ARGS;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 main() {
   var a = new A();

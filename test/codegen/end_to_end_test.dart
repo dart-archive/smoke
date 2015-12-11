@@ -15,13 +15,14 @@ import 'dart:io';
 import 'package:analyzer/src/generated/element.dart';
 import 'package:smoke/codegen/generator.dart';
 import 'package:smoke/codegen/recorder.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:path/path.dart' as path;
 
 import 'testing_resolver_utils.dart' show initAnalyzer;
 
-void main(List<String> args) {
-  final updateStaticTest = args.length > 0 && args[0] == '--update_static_test';
+void main([List<String> args]) {
+  final updateStaticTest =
+      args != null && args.length > 0 && args[0] == '--update_static_test';
 
   test('static_test is up to date', () {
     var scriptPath = path.fromUri(Platform.script);
@@ -136,7 +137,7 @@ void main(List<String> args) {
       staticTestFile.writeAsStringSync(code);
       print('static_test.dart has been updated.');
     }
-  });
+  }, skip: 'https://github.com/dart-lang/smoke/issues/26');
 }
 
 String _createEntrypoint(SmokeCodeGenerator generator) {

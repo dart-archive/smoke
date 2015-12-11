@@ -1,3 +1,6 @@
+#### 0.3.6
+  * Update to analyzer '^0.27.0' and update to the test package.
+
 #### 0.3.5
   * Update to analyzer '<0.27.0'
 

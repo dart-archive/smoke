@@ -222,7 +222,7 @@ ClassMirror _safeSuperclass(ClassMirror type) {
       t = _objectType;
     }
     return t;
-  } on UnsupportedError catch (e) {
+  } on UnsupportedError catch (_) {
     // Note: dart2js throws UnsupportedError when the type is not reflectable.
     return _objectType;
   }

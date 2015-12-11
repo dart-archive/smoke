@@ -145,7 +145,7 @@ class GeneratedObjectAccessorService implements ObjectAccessorService {
     }
     try {
       return Function.apply(method, args);
-    } on NoSuchMethodError catch (e) {
+    } on NoSuchMethodError catch (_) {
       // TODO(sigmund): consider whether this should just be in a logger or if
       // we should wrap `e` as a new exception (what's the best way to let users
       // know about this tentativeError?)

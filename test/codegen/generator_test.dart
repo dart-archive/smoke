@@ -5,7 +5,7 @@
 library smoke.test.codegen.generator_test;
 
 import 'package:smoke/codegen/generator.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'common.dart' show checkResults;
 

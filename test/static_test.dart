@@ -5,7 +5,7 @@
 
 library smoke.test.static_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;
 import 'package:smoke/static.dart' show useGeneratedCode, StaticConfiguration;
 import 'common.dart' as smoke_0;

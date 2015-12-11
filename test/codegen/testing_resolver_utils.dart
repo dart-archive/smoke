@@ -24,6 +24,7 @@ class LibraryProvider {
 }
 
 LibraryProvider initAnalyzer(Map<String, String> contents) {
+  AnalysisEngine.instance.processRequiredPlugins();
   var analyzer = AnalysisEngine.instance.createAnalysisContext();
   var options = new AnalysisOptionsImpl()
     ..cacheSize = 256
