@@ -8,6 +8,7 @@
 /// ensures that we generate the code as it was written in static_test, and
 /// separately static_test ensures that the smoke.static library behaves as
 /// expected.
+@TestOn('vm')
 library smoke.test.codegen.end_to_end_test;
 
 import 'dart:io';

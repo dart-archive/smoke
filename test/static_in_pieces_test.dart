@@ -4,6 +4,7 @@
 
 /// Tests that a static configuration can be loaded in pieces, even with
 /// deferred imports.
+@TestOn('vm')
 library smoke.test.static_in_pieces_test;
 
 import 'package:test/test.dart';
@@ -109,6 +110,6 @@ main() {
     configuration.addAll(p2.configuration);
     expect(configuration.names[#i], 'i');
   });
-  
+
   common.main();
 }
