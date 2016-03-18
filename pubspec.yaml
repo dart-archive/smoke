@@ -1,5 +1,5 @@
 name: smoke
-version: 0.3.6
+version: 0.3.6+1
 author: Polymer.dart Authors <web-ui-dev@dartlang.org>
 homepage: https://github.com/dart-lang/smoke
 description: >
@@ -19,6 +19,6 @@ transformers:
 dev_dependencies:
   test: "^0.12.0"
   path: "^1.0.0"
-  code_transformers: "^0.3.0"
+  transformer_test: "^0.2.0"
 environment:
   sdk: ">=1.12.0 <2.0.0"

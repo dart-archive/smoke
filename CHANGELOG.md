@@ -1,3 +1,7 @@
+#### 0.3.6+1
+  * Update to use the `transformer_test` package instead of `code_transformers`
+    for tests.
+
 #### 0.3.6
   * Update to analyzer '^0.27.0' and update to the test package.
 
