@@ -5,7 +5,7 @@
 /// Utility functions to test the code generation tools with the resolver.
 // Note, this is just for simple tests, so we restricted the logic to only
 // support root-relative imports. For more sophisticated stuff, you should be
-// using the test helpers in `package:code_transformers`.
+// using the test helpers in `package:transformer_test/utils.dart`.
 library smoke.test.codegen.testing_resolver_utils;
 
 import 'package:analyzer/src/generated/element.dart';
@@ -13,7 +13,7 @@ import 'package:analyzer/src/generated/engine.dart';
 import 'package:analyzer/src/generated/java_io.dart';
 import 'package:analyzer/src/generated/source.dart';
 import 'package:analyzer/src/generated/sdk_io.dart' show DirectoryBasedDartSdk;
-import 'package:code_transformers/tests.dart' show testingDartSdkDirectory;
+import 'package:transformer_test/utils.dart' show testingDartSdkDirectory;
 
 class LibraryProvider {
   final AnalysisContext _analyzer;
@@ -87,7 +87,7 @@ class _SimpleSource extends Source {
 
   // Since this is just for simple tests we just restricted this mock
   // to root-relative imports. For more sophisticated stuff, you should be
-  // using the test helpers in `package:code_transformers`.
+  // using the test helpers in `package:transformer_test/utils.dart`.
   Source resolveRelative(Uri uri) {
     if (uri.path.startsWith('/')) return allSources['${uri.path}'];
     throw new UnimplementedError('relative URIs not supported: $uri');
@@ -95,7 +95,7 @@ class _SimpleSource extends Source {
 
   // Since this is just for simple tests we just restricted this mock
   // to root-relative imports. For more sophisticated stuff, you should be
-  // using the test helpers in `package:code_transformers`.
+  // using the test helpers in `package:transformer_test/utils.dart`.
   Uri resolveRelativeUri(Uri uri) {
     if (!uri.path.startsWith('/')) {
       throw new UnimplementedError('relative URIs not supported: $uri');
