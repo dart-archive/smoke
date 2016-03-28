@@ -14,7 +14,8 @@ import 'src/common.dart';
 /// is preserved by `dart:mirrors`, use a @MirrorsUsed annotation and include
 /// 'smoke.mirrors' in your override arguments.
 useMirrors() {
-  configure(new ReflectiveObjectAccessorService(),
+  configure(
+      new ReflectiveObjectAccessorService(),
       new ReflectiveTypeInspectorService(),
       new ReflectiveSymbolConverterService());
 }
@@ -146,22 +147,17 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   List<Declaration> _query(ClassMirror cls, QueryOptions options) {
-    final visitParent = options.includeInherited && cls.superclass != null &&
+    final visitParent = options.includeInherited &&
+        cls.superclass != null &&
         // TODO(sigmund): use _toType(cls.superclass) != options.includeUpTo
         // when dartbug.com/16925 gets fixed (_toType fails in dart2js if
         // applied to classes with type-arguments).
         cls.superclass != reflectClass(options.includeUpTo);
-    var result = visitParent ? _query(cls.superclass, options) : <Declaration>[];
+    var result =
+        visitParent ? _query(cls.superclass, options) : <Declaration>[];
     for (var member in cls.declarations.values) {
-      if (member.isPrivate) continue;
       if (member is! VariableMirror && member is! MethodMirror) continue;
-      var isStatic = false;
-      if (member is VariableMirror) {
-        isStatic = member.isStatic;
-      } else if (member is MethodMirror) {
-        isStatic = member.isStatic;
-      }
-      if (isStatic || member.isPrivate) continue;
+      if (member.isPrivate || (member as dynamic).isStatic) continue;
       var name = member.simpleName;
       if (member is VariableMirror) {
         if (!options.includeFields) continue;
@@ -294,7 +290,8 @@ class _MirrorDeclaration implements Declaration {
 
   /// If this is a property, whether it's read only (final fields or properties
   /// with no setter).
-  bool get isFinal => (_original is VariableMirror && _original.isFinal) ||
+  bool get isFinal =>
+      (_original is VariableMirror && _original.isFinal) ||
       (_original is MethodMirror &&
           _original.isGetter &&
           !_hasSetter(_cls, _original));
@@ -317,7 +314,8 @@ class _MirrorDeclaration implements Declaration {
   List get annotations => _original.metadata.map((a) => a.reflectee).toList();
 
   int get hashCode => name.hashCode;
-  operator ==(other) => other is Declaration &&
+  operator ==(other) =>
+      other is Declaration &&
       name == other.name &&
       kind == other.kind &&
       isFinal == other.isFinal &&
@@ -325,12 +323,14 @@ class _MirrorDeclaration implements Declaration {
       isStatic == other.isStatic &&
       compareLists(annotations, other.annotations);
   String toString() => (new StringBuffer()
-    ..write('(mirror-based-declaration ')
-    ..write(name)
-    ..write(
-        isField ? ' (field) ' : (isProperty ? ' (property) ' : ' (method) '))
-    ..write(isFinal ? 'final ' : '')
-    ..write(isStatic ? 'static ' : '')
-    ..write(annotations)
-    ..write(')')).toString();
+        ..write('(mirror-based-declaration ')
+        ..write(name)
+        ..write(isField
+            ? ' (field) '
+            : (isProperty ? ' (property) ' : ' (method) '))
+        ..write(isFinal ? 'final ' : '')
+        ..write(isStatic ? 'static ' : '')
+        ..write(annotations)
+        ..write(')'))
+      .toString();
 }

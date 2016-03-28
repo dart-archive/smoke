@@ -43,9 +43,13 @@ class StaticConfiguration {
   /// values (for example a missing parent class can be treated as Object)
   final bool checkedMode;
 
-  StaticConfiguration({Map<Symbol, Getter> getters, Map<Symbol, Setter> setters,
-      Map<Type, Type> parents, Map<Type, Map<Symbol, Declaration>> declarations,
-      Map<Type, Map<Symbol, Function>> staticMethods, Map<Symbol, String> names,
+  StaticConfiguration(
+      {Map<Symbol, Getter> getters,
+      Map<Symbol, Setter> setters,
+      Map<Type, Type> parents,
+      Map<Type, Map<Symbol, Declaration>> declarations,
+      Map<Type, Map<Symbol, Function>> staticMethods,
+      Map<Symbol, String> names,
       this.checkedMode: true})
       : getters = getters != null ? getters : {},
         setters = setters != null ? setters : {},
@@ -81,7 +85,8 @@ class StaticConfiguration {
 /// Set up the smoke package to use a static implementation based on the given
 /// [configuration].
 useGeneratedCode(StaticConfiguration configuration) {
-  configure(new GeneratedObjectAccessorService(configuration),
+  configure(
+      new GeneratedObjectAccessorService(configuration),
       new GeneratedTypeInspectorService(configuration),
       new GeneratedSymbolConverterService(configuration));
 }

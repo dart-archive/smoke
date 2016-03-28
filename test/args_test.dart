@@ -138,8 +138,8 @@ class A {
   static s28(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) {}
   static s29(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) {}
   static s30(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) {}
-  static s31(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) {
-  }
+  static s31(
+      p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) {}
   static s32(
       p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) {}
   static s33(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
@@ -228,8 +228,8 @@ class A {
   m41(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, [o13]) {}
   m42(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, [o14]) {}
   m43(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, [o15]) {}
-  m44(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, [o16]) {
-  }
+  m44(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
+      [o16]) {}
   m45(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16,
       [o17]) {}
 
@@ -244,8 +244,8 @@ class A {
   m53(p1, p2, p3, p4, p5, [o6, o7, o8, o9, o10, o11, o12, o13]) {}
   m54(p1, p2, p3, p4, p5, [o6, o7, o8, o9, o10, o11, o12, o13, o14]) {}
   m55(p1, p2, p3, p4, p5, [o6, o7, o8, o9, o10, o11, o12, o13, o14, o15]) {}
-  m56(p1, p2, p3, p4, p5, [o6, o7, o8, o9, o10, o11, o12, o13, o14, o15, o16]) {
-  }
+  m56(p1, p2, p3, p4, p5,
+      [o6, o7, o8, o9, o10, o11, o12, o13, o14, o15, o16]) {}
   m57(p1, p2, p3, p4, p5,
       [o6, o7, o8, o9, o10, o11, o12, o13, o14, o15, o16, o17]) {}
 }
@@ -352,8 +352,8 @@ List closures = [
   (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) {},
   (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) {},
   (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) {},
-  (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17) {
-  },
+  (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16,
+      p17) {},
 
   // >5 arguments, all but one required.
   (p1, p2, p3, p4, p5, [o6]) {},

@@ -9,14 +9,13 @@ import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;
 import 'package:smoke/static.dart' show useGeneratedCode, StaticConfiguration;
 import 'common.dart' as smoke_0;
 
-final configuration = new StaticConfiguration(
-    checkedMode: false, getters: {#j2: (o) => o.j2,}, setters: {
+final configuration = new StaticConfiguration(checkedMode: false, getters: {
+  #j2: (o) => o.j2,
+}, setters: {
   #j2: (o, v) {
     o.j2 = v;
   },
-},
-    parents: {},
-    declarations: {
+}, parents: {}, declarations: {
   smoke_0.A: {},
   smoke_0.B: {#a: const Declaration(#a, smoke_0.A),},
   smoke_0.K: {
@@ -25,6 +24,8 @@ final configuration = new StaticConfiguration(
     #k2: const Declaration(#k2, int,
         annotations: const [const smoke_0.AnnotC()]),
   },
-},
-    staticMethods: {smoke_0.A: {#staticInc: smoke_0.A.staticInc,},},
-    names: {#i: r'i',});
+}, staticMethods: {
+  smoke_0.A: {#staticInc: smoke_0.A.staticInc,},
+}, names: {
+  #i: r'i',
+});

@@ -45,15 +45,8 @@ void main([List<String> args]) {
     }
 
     // Record all getters and setters we use in the tests.
-    [
-      'i',
-      'j',
-      'j2',
-      'inc0',
-      'inc1',
-      'inc2',
-      'toString'
-    ].forEach(generator.addGetter);
+    ['i', 'j', 'j2', 'inc0', 'inc1', 'inc2', 'toString']
+        .forEach(generator.addGetter);
     ['i', 'j2'].forEach(generator.addSetter);
 
     // Record static methods used in the tests
@@ -63,13 +56,8 @@ void main([List<String> args]) {
     generator.addSymbol('i');
 
     /// Record all parent-class relations that we explicitly request.
-    [
-      'AnnotB',
-      'A',
-      'B',
-      'D',
-      'H'
-    ].forEach((className) => recorder.lookupParent(lib.getType(className)));
+    ['AnnotB', 'A', 'B', 'D', 'H']
+        .forEach((className) => recorder.lookupParent(lib.getType(className)));
 
     // Record members for which we implicitly request their declaration in
     // has-getter and has-setter tests.
@@ -116,16 +104,20 @@ void main([List<String> args]) {
     expect(vars[0].name, 'a1');
     expect(vars[1].name, 'a2');
 
-    runQuery('H', new QueryOptions(
-        includeInherited: true,
-        withAnnotations: [vars[0], vars[1], lib.getType('Annot')]));
+    runQuery(
+        'H',
+        new QueryOptions(
+            includeInherited: true,
+            withAnnotations: [vars[0], vars[1], lib.getType('Annot')]));
 
-    runQuery('K', new QueryOptions(
-        includeInherited: true, withAnnotations: [lib.getType('AnnotC')]));
+    runQuery(
+        'K',
+        new QueryOptions(
+            includeInherited: true, withAnnotations: [lib.getType('AnnotC')]));
 
     runQuery('L', new QueryOptions(includeMethods: true));
-    runQuery('L2', new QueryOptions(
-        includeInherited: true, includeMethods: true));
+    runQuery(
+        'L2', new QueryOptions(includeInherited: true, includeMethods: true));
 
     var code = _createEntrypoint(generator);
     var staticTestFile = new File(path.join(testDir, 'static_test.dart'));
