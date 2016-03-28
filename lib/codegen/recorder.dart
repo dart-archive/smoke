@@ -257,7 +257,8 @@ class Recorder {
     // [node] is the initialization expression, we walk up to get to the actual
     // member declaration where the metadata is attached to.
     while (node is! ClassMember) node = node.parent;
-    return node.metadata.map(_convertAnnotation).toList();
+    return (node as ClassMember).metadata.map(_convertAnnotation).toList() as
+    List<ConstExpression>;
   }
 
   /// Converts annotations into [ConstExpression]s supported by the codegen
@@ -270,8 +271,8 @@ class Recorder {
             'named constructors are not implemented in smoke.codegen.recorder');
       }
 
-      var positionalArgs = [];
-      var namedArgs = {};
+      var positionalArgs = <ConstExpression>[];
+      var namedArgs = <String,ConstExpression>{};
       for (var arg in annotation.arguments.arguments) {
         if (arg is NamedExpression) {
           namedArgs[arg.name.label.name] = _convertExpression(arg.expression);

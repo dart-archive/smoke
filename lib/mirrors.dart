@@ -72,8 +72,9 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   bool hasGetter(Type type, Symbol name) {
-    var mirror = reflectType(type);
-    if (mirror is! ClassMirror) return false;
+    var reflectiveType = reflectType(type);
+    if (reflectiveType is! ClassMirror) return false;
+    var mirror = reflectiveType as ClassMirror;
     while (mirror != _objectType) {
       final members = mirror.declarations;
       if (members.containsKey(name)) return true;
@@ -83,8 +84,9 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   bool hasSetter(Type type, Symbol name) {
-    var mirror = reflectType(type);
-    if (mirror is! ClassMirror) return false;
+    var reflectiveType = reflectType(type);
+    if (reflectiveType is! ClassMirror) return false;
+    var mirror = reflectiveType as ClassMirror;
     var setterName = _setterName(name);
     while (mirror != _objectType) {
       final members = mirror.declarations;
@@ -97,8 +99,9 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   bool hasInstanceMethod(Type type, Symbol name) {
-    var mirror = reflectType(type);
-    if (mirror is! ClassMirror) return false;
+    var reflectiveType = reflectType(type);
+    if (reflectiveType is! ClassMirror) return false;
+    var mirror = reflectiveType as ClassMirror;
     while (mirror != _objectType) {
       final m = mirror.declarations[name];
       if (m is MethodMirror && m.isRegularMethod && !m.isStatic) return true;
@@ -108,15 +111,17 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
   }
 
   bool hasStaticMethod(Type type, Symbol name) {
-    var mirror = reflectType(type);
-    if (mirror is! ClassMirror) return false;
+    var reflectiveType = reflectType(type);
+    if (reflectiveType is! ClassMirror) return false;
+    var mirror = reflectiveType as ClassMirror;
     final m = mirror.declarations[name];
     return m is MethodMirror && m.isRegularMethod && m.isStatic;
   }
 
   Declaration getDeclaration(Type type, Symbol name) {
-    var mirror = reflectType(type);
-    if (mirror is! ClassMirror) return null;
+    var reflectiveType = reflectType(type);
+    if (reflectiveType is! ClassMirror) return null;
+    var mirror = reflectiveType as ClassMirror;
 
     var declaration;
     while (mirror != _objectType) {
@@ -146,10 +151,17 @@ class ReflectiveTypeInspectorService implements TypeInspectorService {
         // when dartbug.com/16925 gets fixed (_toType fails in dart2js if
         // applied to classes with type-arguments).
         cls.superclass != reflectClass(options.includeUpTo);
-    var result = visitParent ? _query(cls.superclass, options) : [];
+    var result = visitParent ? _query(cls.superclass, options) : <Declaration>[];
     for (var member in cls.declarations.values) {
+      if (member.isPrivate) continue;
       if (member is! VariableMirror && member is! MethodMirror) continue;
-      if (member.isStatic || member.isPrivate) continue;
+      var isStatic = false;
+      if (member is VariableMirror) {
+        isStatic = member.isStatic;
+      } else if (member is MethodMirror) {
+        isStatic = member.isStatic;
+      }
+      if (isStatic || member.isPrivate) continue;
       var name = member.simpleName;
       if (member is VariableMirror) {
         if (!options.includeFields) continue;

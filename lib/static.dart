@@ -217,7 +217,7 @@ class GeneratedTypeInspectorService implements TypeInspectorService {
   }
 
   List<Declaration> query(Type type, QueryOptions options) {
-    var result = [];
+    var result = <Declaration>[];
     if (options.includeInherited) {
       var superclass = _parents[type];
       if (superclass == null) {

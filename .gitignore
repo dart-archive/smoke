@@ -3,3 +3,5 @@ pubspec.lock
 packages
 .idea
 /build/
+.packages
+.analysis_options

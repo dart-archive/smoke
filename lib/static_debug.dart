@@ -84,7 +84,8 @@ class _DebugTypeInspectorService implements TypeInspectorService {
     name
   ], _static.getDeclaration(type, name), _mirrors.getDeclaration(type, name));
 
-  List<Declaration> query(Type type, QueryOptions options) => _check('query', [
+  List<Declaration> query(Type type, QueryOptions options) => _checkList
+      ('query', [
     type,
     options
   ], _static.query(type, options), _mirrors.query(type, options));
@@ -106,7 +107,22 @@ class _DebugSymbolConverterService implements SymbolConverterService {
       _static.nameToSymbol(name), _mirrors.nameToSymbol(name));
 }
 
-_check(String operation, List arguments, staticResult, mirrorResult) {
+dynamic _check(String operation, List arguments, staticResult, mirrorResult) {
+  if (staticResult == mirrorResult) return staticResult;
+  if (staticResult is List &&
+      mirrorResult is List &&
+      compareLists(staticResult, mirrorResult, unordered: true)) {
+    return staticResult;
+  }
+  print('warning: inconsistent result on $operation(${arguments.join(', ')})\n'
+      'smoke.mirrors result: $mirrorResult\n'
+      'smoke.static result:  $staticResult\n');
+  return staticResult;
+}
+
+List<Declaration>  _checkList(String operation, List arguments,
+    List<Declaration> staticResult,
+    List<Declaration> mirrorResult) {
   if (staticResult == mirrorResult) return staticResult;
   if (staticResult is List &&
       mirrorResult is List &&

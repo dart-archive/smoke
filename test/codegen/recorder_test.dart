@@ -777,5 +777,5 @@ const _SOURCES = const {
       '''
 };
 
-resolveImportUrl(LibraryElement lib) =>
+String resolveImportUrl(LibraryElement lib) =>
     lib.isDartCore ? 'dart:core' : '/${lib.displayName}.dart';

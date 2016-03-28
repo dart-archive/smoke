@@ -20,7 +20,14 @@ class DefaultTransformer extends Transformer {
   // TODO(nweiz): This should just take an AssetId when barback <0.13.0 support
   // is dropped.
   Future<bool> isPrimary(idOrAsset) {
-    var id = idOrAsset is AssetId ? idOrAsset : idOrAsset.id;
+    var id;
+    if (idOrAsset is Asset) {
+      id = (idOrAsset as Asset).id; // Only for old versions of barback.
+    } else if (idOrAsset is AssetId) {
+      id = idOrAsset;
+    } else {
+      id = new AssetId(null,null); // Not reached.
+    }
     return new Future.value(
         id.package == 'smoke' && id.path == 'lib/src/implementation.dart');
   }
