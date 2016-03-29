@@ -261,7 +261,8 @@ class Recorder {
     while (node is! ClassMember) node = node.parent;
     return (node as ClassMember)
         .metadata
-        .map/*<ConstExpression>*/(_convertAnnotation);
+        .map/*<ConstExpression>*/(_convertAnnotation)
+        .toList();
   }
 
   /// Converts annotations into [ConstExpression]s supported by the codegen

@@ -293,7 +293,7 @@ class _DeclarationCode extends ConstExpression {
 
   List<String> get librariesUsed => <String>[]
     ..addAll(type.librariesUsed)
-    ..addAll(annotations.expand((a) => a.librariesUsed));
+    ..addAll(annotations.expand/*<String>*/((a) => a.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
