@@ -28,8 +28,8 @@ bool matchesAnnotation(Iterable metadata, Iterable queryAnnotations) {
   for (var meta in metadata) {
     for (var queryMeta in queryAnnotations) {
       if (meta == queryMeta) return true;
-      if (queryMeta is Type &&
-          smoke.isSubclassOf(meta.runtimeType, queryMeta)) return true;
+      if (queryMeta is Type && smoke.isSubclassOf(meta.runtimeType, queryMeta))
+        return true;
     }
   }
   return false;

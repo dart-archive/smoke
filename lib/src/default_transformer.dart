@@ -20,7 +20,8 @@ class DefaultTransformer extends Transformer {
   // TODO(nweiz): This should just take an AssetId when barback <0.13.0 support
   // is dropped.
   Future<bool> isPrimary(idOrAsset) {
-    var id = idOrAsset is AssetId ? idOrAsset : idOrAsset.id;
+    assert(idOrAsset is Asset || idOrAsset is AssetId);
+    var id = idOrAsset is AssetId ? idOrAsset : (idOrAsset as Asset).id;
     return new Future.value(
         id.package == 'smoke' && id.path == 'lib/src/implementation.dart');
   }
@@ -30,14 +31,17 @@ class DefaultTransformer extends Transformer {
     return transform.primaryInput.readAsString().then((code) {
       // Note: this rewrite is highly-coupled with how implementation.dart is
       // written. Make sure both are updated in sync.
-      transform.addOutput(new Asset.fromString(id, code
-          .replaceAll(
-              new RegExp('new Reflective[^;]*;'), 'throwNotConfiguredError();')
-          .replaceAll("import 'package:smoke/mirrors.dart';", '')));
+      transform.addOutput(new Asset.fromString(
+          id,
+          code
+              .replaceAll(new RegExp('new Reflective[^;]*;'),
+                  'throwNotConfiguredError();')
+              .replaceAll("import 'package:smoke/mirrors.dart';", '')));
     });
   }
 }
 
 /** Transformer phases which should be applied to the smoke package. */
-List<List<Transformer>> get phasesForSmoke =>
-    [[new DefaultTransformer.asPlugin()]];
+List<List<Transformer>> get phasesForSmoke => [
+      [new DefaultTransformer.asPlugin()]
+    ];

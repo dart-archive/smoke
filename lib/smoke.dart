@@ -17,7 +17,8 @@ import 'src/common.dart' show compareLists;
 ///
 /// This function doesn't need to be called during development, but frameworks
 /// should autogenerate a call to this function when running in deployment.
-void configure(ObjectAccessorService objectAccessor,
+void configure(
+    ObjectAccessorService objectAccessor,
     TypeInspectorService typeInspector,
     SymbolConverterService symbolConverter) {
   implementation.objectAccessor = objectAccessor;
@@ -39,8 +40,9 @@ void write(Object object, Symbol field, value) =>
 /// of formal parameters by either adding nulls for missing arguments, or by
 /// truncating the list.
 invoke(receiver, Symbol method, List args,
-    {Map namedArgs, bool adjust: false}) => implementation.objectAccessor
-    .invoke(receiver, method, args, namedArgs: namedArgs, adjust: adjust);
+        {Map namedArgs, bool adjust: false}) =>
+    implementation.objectAccessor
+        .invoke(receiver, method, args, namedArgs: namedArgs, adjust: adjust);
 
 /// Tells whether [type] is transitively a subclass of [supertype].
 bool isSubclassOf(Type type, Type supertype) =>
@@ -129,23 +131,29 @@ class QueryOptions {
   /// methods that match the predicate.
   final NameMatcher matches;
 
-  const QueryOptions({this.includeFields: true, this.includeProperties: true,
-      this.includeInherited: true, this.includeUpTo: Object,
-      this.excludeFinal: false, this.excludeOverriden: false,
-      this.includeMethods: false, this.withAnnotations: null,
+  const QueryOptions(
+      {this.includeFields: true,
+      this.includeProperties: true,
+      this.includeInherited: true,
+      this.includeUpTo: Object,
+      this.excludeFinal: false,
+      this.excludeOverriden: false,
+      this.includeMethods: false,
+      this.withAnnotations: null,
       this.matches: null});
 
   String toString() => (new StringBuffer()
-    ..write('(options:')
-    ..write(includeFields ? 'fields ' : '')
-    ..write(includeProperties ? 'properties ' : '')
-    ..write(includeMethods ? 'methods ' : '')
-    ..write(includeInherited ? 'inherited ' : '_')
-    ..write(excludeFinal ? 'no finals ' : '')
-    ..write(excludeOverriden ? 'no overriden ': '')
-    ..write('annotations: $withAnnotations')
-    ..write(matches != null ? 'with matcher' : '')
-    ..write(')')).toString();
+        ..write('(options:')
+        ..write(includeFields ? 'fields ' : '')
+        ..write(includeProperties ? 'properties ' : '')
+        ..write(includeMethods ? 'methods ' : '')
+        ..write(includeInherited ? 'inherited ' : '_')
+        ..write(excludeFinal ? 'no finals ' : '')
+        ..write(excludeOverriden ? 'no overriden ' : '')
+        ..write('annotations: $withAnnotations')
+        ..write(matches != null ? 'with matcher' : '')
+        ..write(')'))
+      .toString();
 }
 
 /// Used to filter query results based on a predicate on [name]. Returns true if
@@ -184,11 +192,15 @@ class Declaration {
   /// List of annotations in this declaration.
   final List annotations;
 
-  const Declaration(this.name, this.type, {this.kind: FIELD,
-      this.isFinal: false, this.isStatic: false, this.annotations: const []});
+  const Declaration(this.name, this.type,
+      {this.kind: FIELD,
+      this.isFinal: false,
+      this.isStatic: false,
+      this.annotations: const []});
 
   int get hashCode => name.hashCode;
-  operator ==(other) => other is Declaration &&
+  operator ==(other) =>
+      other is Declaration &&
       name == other.name &&
       kind == other.kind &&
       isFinal == other.isFinal &&
@@ -198,13 +210,14 @@ class Declaration {
 
   String toString() {
     return (new StringBuffer()
-      ..write('(declaration ')
-      ..write(name)
-      ..write(isProperty ? ' (property) ' : ' (method) ')
-      ..write(isFinal ? 'final ' : '')
-      ..write(isStatic ? 'static ' : '')
-      ..write(annotations)
-      ..write(')')).toString();
+          ..write('(declaration ')
+          ..write(name)
+          ..write(isProperty ? ' (property) ' : ' (method) ')
+          ..write(isFinal ? 'final ' : '')
+          ..write(isStatic ? 'static ' : '')
+          ..write(annotations)
+          ..write(')'))
+        .toString();
   }
 }
 

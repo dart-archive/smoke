@@ -17,28 +17,23 @@ import 'common.dart' as common show main;
 
 abstract class _M0 {} // C & A
 
-final configuration = new StaticConfiguration(
-    checkedMode: false,
-    getters: {
+final configuration = new StaticConfiguration(checkedMode: false, getters: {
   #i: (o) => o.i,
   #inc0: (o) => o.inc0,
   #inc1: (o) => o.inc1,
   #inc2: (o) => o.inc2,
   #toString: (o) => o.toString,
-},
-    setters: {
+}, setters: {
   #i: (o, v) {
     o.i = v;
   },
-},
-    parents: {
+}, parents: {
   smoke_0.AnnotB: smoke_0.Annot,
   smoke_0.D: _M0,
   smoke_0.E2: smoke_0.E,
   smoke_0.F2: smoke_0.F,
   _M0: smoke_0.C,
-},
-    declarations: {
+}, declarations: {
   smoke_0.A: {
     #i: const Declaration(#i, int),
     #inc0: const Declaration(#inc0, Function, kind: METHOD),
@@ -91,9 +86,7 @@ final configuration = new StaticConfiguration(
     #j: const Declaration(#j, int),
     #j2: const Declaration(#j2, int, kind: PROPERTY),
   },
-},
-    staticMethods: {},
-    names: {});
+}, staticMethods: {}, names: {});
 
 main() {
   useGeneratedCode(configuration);

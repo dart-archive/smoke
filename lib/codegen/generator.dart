@@ -99,8 +99,11 @@ class SmokeCodeGenerator {
   /// only one of [isField], [isMethod], or [isProperty] should be set at a
   /// given time.
   void addDeclaration(TypeIdentifier cls, String name, TypeIdentifier type,
-      {bool isField: false, bool isProperty: false, bool isMethod: false,
-      bool isFinal: false, bool isStatic: false,
+      {bool isField: false,
+      bool isProperty: false,
+      bool isMethod: false,
+      bool isFinal: false,
+      bool isStatic: false,
       List<ConstExpression> annotations: const []}) {
     final count = (isField ? 1 : 0) + (isProperty ? 1 : 0) + (isMethod ? 1 : 0);
     if (count != 1) {
@@ -234,9 +237,7 @@ class SmokeCodeGenerator {
       var methods = [];
       _staticMethods.forEach((type, members) {
         var className = type.asCode(_libraryPrefix);
-        final sb = new StringBuffer()
-          ..write(className)
-          ..write(': ');
+        final sb = new StringBuffer()..write(className)..write(': ');
         if (members.isEmpty) {
           sb.write('{}');
         } else {
@@ -290,9 +291,9 @@ class _DeclarationCode extends ConstExpression {
   _DeclarationCode(this.name, this.type, this.kind, this.isFinal, this.isStatic,
       this.annotations);
 
-  List<String> get librariesUsed => []
+  List<String> get librariesUsed => <String>[]
     ..addAll(type.librariesUsed)
-    ..addAll(annotations.expand((a) => a.librariesUsed));
+    ..addAll(annotations.expand/*<String>*/((a) => a.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
@@ -317,7 +318,8 @@ class _DeclarationCode extends ConstExpression {
 
   String toString() =>
       '(decl: $type.$name - $kind, $isFinal, $isStatic, $annotations)';
-  operator ==(other) => other is _DeclarationCode &&
+  operator ==(other) =>
+      other is _DeclarationCode &&
       name == other.name &&
       type == other.type &&
       kind == other.kind &&
@@ -329,7 +331,6 @@ class _DeclarationCode extends ConstExpression {
 
 /// A constant expression that can be used as an annotation.
 abstract class ConstExpression {
-
   /// Returns the library URLs that needs to be imported for this
   /// [ConstExpression] to be a valid annotation.
   List<String> get librariesUsed;
@@ -353,7 +354,9 @@ abstract class ConstExpression {
       new TopLevelIdentifier(importUrl, name);
 
   /// Create an expression of the form `prefix.Constructor(v1, v2, p3: v3)`.
-  factory ConstExpression.constructor(String importUrl, String name,
+  factory ConstExpression.constructor(
+          String importUrl,
+          String name,
           List<ConstExpression> positionalArgs,
           Map<String, ConstExpression> namedArgs) =>
       new ConstructorExpression(importUrl, name, positionalArgs, namedArgs);
@@ -394,7 +397,8 @@ class TopLevelIdentifier extends ConstExpression {
   }
 
   String toString() => '(identifier: $importUrl, $name)';
-  operator ==(other) => other is TopLevelIdentifier &&
+  operator ==(other) =>
+      other is TopLevelIdentifier &&
       name == other.name &&
       importUrl == other.importUrl;
   int get hashCode => 31 * importUrl.hashCode + name.hashCode;
@@ -409,9 +413,9 @@ class ConstructorExpression extends ConstExpression {
   ConstructorExpression(
       this.importUrl, this.name, this.positionalArgs, this.namedArgs);
 
-  List<String> get librariesUsed => [importUrl]
-    ..addAll(positionalArgs.expand((e) => e.librariesUsed))
-    ..addAll(namedArgs.values.expand((e) => e.librariesUsed));
+  List<String> get librariesUsed => <String>[importUrl]
+    ..addAll(positionalArgs.expand/*<String>*/((e) => e.librariesUsed))
+    ..addAll(namedArgs.values.expand/*<String>*/((e) => e.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
@@ -437,7 +441,8 @@ class ConstructorExpression extends ConstExpression {
   }
 
   String toString() => '(ctor: $importUrl, $name, $positionalArgs, $namedArgs)';
-  operator ==(other) => other is ConstructorExpression &&
+  operator ==(other) =>
+      other is ConstructorExpression &&
       name == other.name &&
       importUrl == other.importUrl &&
       compareLists(positionalArgs, other.positionalArgs) &&
@@ -464,7 +469,8 @@ class TypeIdentifier extends TopLevelIdentifier
   }
 
   String toString() => '(type-identifier: $importUrl, $name, $comment)';
-  bool operator ==(other) => other is TypeIdentifier &&
+  bool operator ==(other) =>
+      other is TypeIdentifier &&
       importUrl == other.importUrl &&
       name == other.name &&
       comment == other.comment;

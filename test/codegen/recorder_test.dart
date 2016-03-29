@@ -30,15 +30,15 @@ main() {
 
       checkResults(generator,
           imports: [
-        "import '/a.dart' as smoke_0;",
-        "import '/b.dart' as smoke_1;",
-      ],
+            "import '/a.dart' as smoke_0;",
+            "import '/b.dart' as smoke_1;",
+          ],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.A: smoke_1.B,\n'
-          '      smoke_0.C: smoke_0.A,\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.A: smoke_1.B,\n'
+              '      smoke_0.C: smoke_0.A,\n'
+              '    }));\n');
     });
 
     test('single mixin', () {
@@ -49,11 +49,11 @@ main() {
           imports: ["import '/a.dart' as smoke_0;",],
           topLevel: 'abstract class _M0 {} // A & D1\n',
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.E: _M0,\n'
-          '      _M0: smoke_0.A,\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.E: _M0,\n'
+              '      _M0: smoke_0.A,\n'
+              '    }));\n');
     });
 
     test('multiple mixins', () {
@@ -63,16 +63,16 @@ main() {
       checkResults(generator,
           imports: ["import '/a.dart' as smoke_0;",],
           topLevel: 'abstract class _M0 {} // A & D1\n'
-          'abstract class _M1 {} // _M0 & D2\n'
-          'abstract class _M2 {} // _M1 & D3\n',
+              'abstract class _M1 {} // _M0 & D2\n'
+              'abstract class _M2 {} // _M1 & D3\n',
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.F: _M2,\n'
-          '      _M0: smoke_0.A,\n'
-          '      _M1: _M0,\n'
-          '      _M2: _M1,\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.F: _M2,\n'
+              '      _M0: smoke_0.A,\n'
+              '      _M1: _M0,\n'
+              '      _M2: _M1,\n'
+              '    }));\n');
     });
 
     test('same as common_test', () {
@@ -98,16 +98,16 @@ main() {
           imports: ["import '/common.dart' as smoke_0;",],
           topLevel: 'abstract class _M0 {} // C & A\n',
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.AnnotB: smoke_0.Annot,\n'
-          '      smoke_0.D: _M0,\n'
-          '      smoke_0.E2: smoke_0.E,\n'
-          '      smoke_0.F2: smoke_0.F,\n'
-          '      smoke_0.H: smoke_0.G,\n'
-          '      int: num,\n'
-          '      _M0: smoke_0.C,\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.AnnotB: smoke_0.Annot,\n'
+              '      smoke_0.D: _M0,\n'
+              '      smoke_0.E2: smoke_0.E,\n'
+              '      smoke_0.F2: smoke_0.F,\n'
+              '      smoke_0.H: smoke_0.G,\n'
+              '      int: num,\n'
+              '      _M0: smoke_0.C,\n'
+              '    }));\n');
     });
   });
 
@@ -117,12 +117,12 @@ main() {
     checkResults(generator,
         imports: ["import '/common.dart' as smoke_0;",],
         initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-        '    checkedMode: false,\n'
-        '    staticMethods: {\n'
-        '      smoke_0.A: {\n'
-        '        #sM: smoke_0.A.sM,\n'
-        '      },\n'
-        '    }));\n');
+            '    checkedMode: false,\n'
+            '    staticMethods: {\n'
+            '      smoke_0.A: {\n'
+            '        #sM: smoke_0.A.sM,\n'
+            '      },\n'
+            '    }));\n');
   });
 
   group('lookup member', () {
@@ -136,10 +136,10 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {},\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {},\n'
+              '    }));\n');
     });
 
     test('field declaration', () {
@@ -147,12 +147,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('sattic field declaration', () {
@@ -160,12 +160,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #sI: const Declaration(#sI, int, isStatic: true),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #sI: const Declaration(#sI, int, isStatic: true),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('property declaration', () {
@@ -173,12 +173,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('static property declaration', () {
@@ -187,12 +187,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #sJ: const Declaration(#sJ, int, $details),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #sJ: const Declaration(#sJ, int, $details),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('field and property of dynamic type', () {
@@ -201,13 +201,13 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.I: {\n'
-          '        #i1: const Declaration(#i1, Object),\n'
-          '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.I: {\n'
+              '        #i1: const Declaration(#i1, Object),\n'
+              '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('property of concrete type', () {
@@ -215,13 +215,13 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.I: {\n'
-          '        #i3: const Declaration(#i3, smoke_0.G, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.I: {\n'
+              '        #i3: const Declaration(#i3, smoke_0.G, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('method declaration', () {
@@ -229,12 +229,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #inc0: const Declaration(#inc0, Function, kind: METHOD),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #inc0: const Declaration(#inc0, Function, kind: METHOD),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('static method declaration', () {
@@ -243,12 +243,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #sM: const Declaration(#sM, Function, $details),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #sM: const Declaration(#sM, Function, $details),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('inherited field - not recursive', () {
@@ -256,10 +256,10 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.D: {},\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.D: {},\n'
+              '    }));\n');
     });
 
     test('inherited field - recursive', () {
@@ -269,17 +269,17 @@ main() {
           imports: ["import '/common.dart' as smoke_0;",],
           topLevel: 'abstract class _M0 {} // C & A\n',
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.D: _M0,\n'
-          '      _M0: smoke_0.C,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.D: {},\n'
-          '      _M0: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.D: _M0,\n'
+              '      _M0: smoke_0.C,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.D: {},\n'
+              '      _M0: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('inherited field - recursive deep', () {
@@ -288,18 +288,18 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.J2: smoke_0.J1,\n'
-          '      smoke_0.J3: smoke_0.J2,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.J1: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '      },\n'
-          '      smoke_0.J2: {},\n'
-          '      smoke_0.J3: {},\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.J2: smoke_0.J1,\n'
+              '      smoke_0.J3: smoke_0.J2,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.J1: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '      },\n'
+              '      smoke_0.J2: {},\n'
+              '      smoke_0.J3: {},\n'
+              '    }));\n');
     });
 
     test('inherited field - recursive - includeUpTo', () {
@@ -310,15 +310,15 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.J2: smoke_0.J1,\n'
-          '      smoke_0.J3: smoke_0.J2,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.J2: {},\n'
-          '      smoke_0.J3: {},\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.J2: smoke_0.J1,\n'
+              '      smoke_0.J3: smoke_0.J2,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.J2: {},\n'
+              '      smoke_0.J3: {},\n'
+              '    }));\n');
     });
   });
 
@@ -330,14 +330,14 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '        #j: const Declaration(#j, int),\n'
-          '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '        #j: const Declaration(#j, int),\n'
+              '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('only fields', () {
@@ -347,13 +347,13 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '        #j: const Declaration(#j, int),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '        #j: const Declaration(#j, int),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('only properties', () {
@@ -363,12 +363,12 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('fields, properties, and and methods', () {
@@ -378,17 +378,17 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '        #inc0: const Declaration(#inc0, Function, kind: METHOD),\n'
-          '        #inc1: const Declaration(#inc1, Function, kind: METHOD),\n'
-          '        #inc2: const Declaration(#inc2, Function, kind: METHOD),\n'
-          '        #j: const Declaration(#j, int),\n'
-          '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '        #inc0: const Declaration(#inc0, Function, kind: METHOD),\n'
+              '        #inc1: const Declaration(#inc1, Function, kind: METHOD),\n'
+              '        #inc2: const Declaration(#inc2, Function, kind: METHOD),\n'
+              '        #j: const Declaration(#j, int),\n'
+              '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('exclude inherited', () {
@@ -398,15 +398,15 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.D: {\n'
-          '        #i2: const Declaration(#i2, int, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '        #x2: const Declaration(#x2, int, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.D: {\n'
+              '        #i2: const Declaration(#i2, int, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '        #x2: const Declaration(#x2, int, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('include inherited', () {
@@ -417,29 +417,29 @@ main() {
           imports: ["import '/common.dart' as smoke_0;",],
           topLevel: 'abstract class _M0 {} // C & A\n',
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.D: _M0,\n'
-          '      _M0: smoke_0.C,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.C: {\n'
-          '        #b: const Declaration(#b, smoke_0.B),\n'
-          '        #x: const Declaration(#x, int),\n'
-          '        #y: const Declaration(#y, String),\n'
-          '      },\n'
-          '      smoke_0.D: {\n'
-          '        #i2: const Declaration(#i2, int, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '        #x2: const Declaration(#x2, int, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '      },\n'
-          '      _M0: {\n'
-          '        #i: const Declaration(#i, int),\n'
-          '        #j: const Declaration(#j, int),\n'
-          '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.D: _M0,\n'
+              '      _M0: smoke_0.C,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.C: {\n'
+              '        #b: const Declaration(#b, smoke_0.B),\n'
+              '        #x: const Declaration(#x, int),\n'
+              '        #y: const Declaration(#y, String),\n'
+              '      },\n'
+              '      smoke_0.D: {\n'
+              '        #i2: const Declaration(#i2, int, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '        #x2: const Declaration(#x2, int, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '      },\n'
+              '      _M0: {\n'
+              '        #i: const Declaration(#i, int),\n'
+              '        #j: const Declaration(#j, int),\n'
+              '        #j2: const Declaration(#j2, int, kind: PROPERTY),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('exact annotation', () {
@@ -453,19 +453,19 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.H: smoke_0.G,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.G: {\n'
-          '        #b: const Declaration(#b, int, $annot),\n'
-          '      },\n'
-          '      smoke_0.H: {\n'
-          '        #f: const Declaration(#f, int, $annot),\n'
-          '        #g: const Declaration(#g, int, $annot),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.H: smoke_0.G,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.G: {\n'
+              '        #b: const Declaration(#b, int, $annot),\n'
+              '      },\n'
+              '      smoke_0.H: {\n'
+              '        #f: const Declaration(#f, int, $annot),\n'
+              '        #g: const Declaration(#g, int, $annot),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('type annotation', () {
@@ -479,21 +479,21 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    parents: {\n'
-          '      smoke_0.H: smoke_0.G,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.G: {\n'
-          '        #b: const Declaration(#b, int, $a1Annot),\n'
-          '      },\n'
-          '      smoke_0.H: {\n'
-          '        #f: const Declaration(#f, int, $a1Annot),\n'
-          '        #g: const Declaration(#g, int, $a1Annot),\n'
-          '        #i: const Declaration(#i, int, $a3Annot),\n'
-          '        #j: const Declaration(#j, int, $exprAnnot),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    parents: {\n'
+              '      smoke_0.H: smoke_0.G,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.G: {\n'
+              '        #b: const Declaration(#b, int, $a1Annot),\n'
+              '      },\n'
+              '      smoke_0.H: {\n'
+              '        #f: const Declaration(#f, int, $a1Annot),\n'
+              '        #g: const Declaration(#g, int, $a1Annot),\n'
+              '        #i: const Declaration(#i, int, $a3Annot),\n'
+              '        #j: const Declaration(#j, int, $exprAnnot),\n'
+              '      },\n'
+              '    }));\n');
     });
 
     test('type annotation with named arguments', () {
@@ -506,13 +506,13 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.K: {\n'
-          '        #k: const Declaration(#k, int, $kAnnot),\n'
-          '        #k2: const Declaration(#k2, int, $k2Annot),\n'
-          '      },\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.K: {\n'
+              '        #k: const Declaration(#k, int, $kAnnot),\n'
+              '        #k2: const Declaration(#k2, int, $k2Annot),\n'
+              '      },\n'
+              '    }));\n');
     });
   });
 
@@ -526,32 +526,32 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    getters: {\n'
-          '      #i1: (o) => o.i1,\n'
-          '      #i2: (o) => o.i2,\n'
-          '      #i3: (o) => o.i3,\n'
-          '      #m4: (o) => o.m4,\n'
-          '    },\n'
-          '    setters: {\n' // #i3 is final
-          '      #i1: (o, v) { o.i1 = v; },\n'
-          '      #i2: (o, v) { o.i2 = v; },\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.I: {\n'
-          '        #i1: const Declaration(#i1, Object),\n'
-          '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
-          '        #i3: const Declaration(#i3, smoke_0.G, kind: PROPERTY, '
-          'isFinal: true),\n'
-          '        #m4: const Declaration(#m4, Function, kind: METHOD),\n'
-          '      },\n'
-          '    },\n'
-          '    names: {\n'
-          '      #i1: r\'i1\',\n'
-          '      #i2: r\'i2\',\n'
-          '      #i3: r\'i3\',\n'
-          '      #m4: r\'m4\',\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    getters: {\n'
+              '      #i1: (o) => o.i1,\n'
+              '      #i2: (o) => o.i2,\n'
+              '      #i3: (o) => o.i3,\n'
+              '      #m4: (o) => o.m4,\n'
+              '    },\n'
+              '    setters: {\n' // #i3 is final
+              '      #i1: (o, v) { o.i1 = v; },\n'
+              '      #i2: (o, v) { o.i2 = v; },\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.I: {\n'
+              '        #i1: const Declaration(#i1, Object),\n'
+              '        #i2: const Declaration(#i2, Object, kind: PROPERTY),\n'
+              '        #i3: const Declaration(#i3, smoke_0.G, kind: PROPERTY, '
+              'isFinal: true),\n'
+              '        #m4: const Declaration(#m4, Function, kind: METHOD),\n'
+              '      },\n'
+              '    },\n'
+              '    names: {\n'
+              '      #i1: r\'i1\',\n'
+              '      #i2: r\'i2\',\n'
+              '      #i3: r\'i3\',\n'
+              '      #m4: r\'m4\',\n'
+              '    }));\n');
     });
 
     test('static members', () {
@@ -564,22 +564,22 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    declarations: {\n'
-          '      smoke_0.A: {\n'
-          '        #sI: const Declaration(#sI, int, isStatic: true),\n'
-          '        #sJ: const Declaration(#sJ, int, $pDetails),\n'
-          '        #sM: const Declaration(#sM, Function, $mDetails),\n'
-          '      },\n'
-          '    },\n'
-          '    staticMethods: {\n'
-          '      smoke_0.A: {\n'
-          '        #sM: smoke_0.A.sM,\n'
-          '      },\n'
-          '    },\n'
-          '    names: {\n'
-          '      #sM: r\'sM\',\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    declarations: {\n'
+              '      smoke_0.A: {\n'
+              '        #sI: const Declaration(#sI, int, isStatic: true),\n'
+              '        #sJ: const Declaration(#sJ, int, $pDetails),\n'
+              '        #sM: const Declaration(#sM, Function, $mDetails),\n'
+              '      },\n'
+              '    },\n'
+              '    staticMethods: {\n'
+              '      smoke_0.A: {\n'
+              '        #sM: smoke_0.A.sM,\n'
+              '      },\n'
+              '    },\n'
+              '    names: {\n'
+              '      #sM: r\'sM\',\n'
+              '    }));\n');
     });
 
     test('query', () {
@@ -593,42 +593,42 @@ main() {
       checkResults(generator,
           imports: ["import '/common.dart' as smoke_0;",],
           initCall: 'useGeneratedCode(new StaticConfiguration(\n'
-          '    checkedMode: false,\n'
-          '    getters: {\n'
-          '      #b: (o) => o.b,\n'
-          '      #f: (o) => o.f,\n'
-          '      #g: (o) => o.g,\n'
-          '      #i: (o) => o.i,\n'
-          '      #j: (o) => o.j,\n'
-          '    },\n'
-          '    setters: {\n' // #i3 is final
-          '      #b: (o, v) { o.b = v; },\n'
-          '      #f: (o, v) { o.f = v; },\n'
-          '      #g: (o, v) { o.g = v; },\n'
-          '      #i: (o, v) { o.i = v; },\n'
-          '      #j: (o, v) { o.j = v; },\n'
-          '    },\n'
-          '    parents: {\n'
-          '      smoke_0.H: smoke_0.G,\n'
-          '    },\n'
-          '    declarations: {\n'
-          '      smoke_0.G: {\n'
-          '        #b: const Declaration(#b, int, $a1Annot),\n'
-          '      },\n'
-          '      smoke_0.H: {\n'
-          '        #f: const Declaration(#f, int, $a1Annot),\n'
-          '        #g: const Declaration(#g, int, $a1Annot),\n'
-          '        #i: const Declaration(#i, int, $a3Annot),\n'
-          '        #j: const Declaration(#j, int, $exprAnnot),\n'
-          '      },\n'
-          '    },\n'
-          '    names: {\n'
-          '      #b: r\'b\',\n'
-          '      #f: r\'f\',\n'
-          '      #g: r\'g\',\n'
-          '      #i: r\'i\',\n'
-          '      #j: r\'j\',\n'
-          '    }));\n');
+              '    checkedMode: false,\n'
+              '    getters: {\n'
+              '      #b: (o) => o.b,\n'
+              '      #f: (o) => o.f,\n'
+              '      #g: (o) => o.g,\n'
+              '      #i: (o) => o.i,\n'
+              '      #j: (o) => o.j,\n'
+              '    },\n'
+              '    setters: {\n' // #i3 is final
+              '      #b: (o, v) { o.b = v; },\n'
+              '      #f: (o, v) { o.f = v; },\n'
+              '      #g: (o, v) { o.g = v; },\n'
+              '      #i: (o, v) { o.i = v; },\n'
+              '      #j: (o, v) { o.j = v; },\n'
+              '    },\n'
+              '    parents: {\n'
+              '      smoke_0.H: smoke_0.G,\n'
+              '    },\n'
+              '    declarations: {\n'
+              '      smoke_0.G: {\n'
+              '        #b: const Declaration(#b, int, $a1Annot),\n'
+              '      },\n'
+              '      smoke_0.H: {\n'
+              '        #f: const Declaration(#f, int, $a1Annot),\n'
+              '        #g: const Declaration(#g, int, $a1Annot),\n'
+              '        #i: const Declaration(#i, int, $a3Annot),\n'
+              '        #j: const Declaration(#j, int, $exprAnnot),\n'
+              '      },\n'
+              '    },\n'
+              '    names: {\n'
+              '      #b: r\'b\',\n'
+              '      #f: r\'f\',\n'
+              '      #g: r\'g\',\n'
+              '      #i: r\'i\',\n'
+              '      #j: r\'j\',\n'
+              '    }));\n');
     });
   });
 }
@@ -777,5 +777,5 @@ const _SOURCES = const {
       '''
 };
 
-resolveImportUrl(LibraryElement lib) =>
+String resolveImportUrl(LibraryElement lib) =>
     lib.isDartCore ? 'dart:core' : '/${lib.displayName}.dart';

@@ -34,7 +34,7 @@ LibraryProvider initAnalyzer(Map<String, String> contents) {
   var sdk = new DirectoryBasedDartSdk(new JavaFile(testingDartSdkDirectory));
   sdk.context.analysisOptions = options;
   var changes = new ChangeSet();
-  var allSources = {};
+  var allSources = <String, Source>{};
   contents.forEach((url, code) {
     var source = new _SimpleSource(url, code, allSources);
     allSources[url] = source;

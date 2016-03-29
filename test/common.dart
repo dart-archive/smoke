@@ -331,12 +331,15 @@ class A {
   void set j2(int v) {
     j = v;
   }
+
   void inc0() {
     i++;
   }
+
   void inc1(int v) {
     i = i + (v == null ? -10 : v);
   }
+
   void inc2([int v]) {
     i = i + (v == null ? -10 : v);
   }
@@ -369,6 +372,7 @@ class C {
   inc(int n) {
     x = x + n;
   }
+
   dec(int n) {
     x = x - n;
   }
@@ -401,34 +405,45 @@ class F2 extends F {}
 class Annot {
   const Annot();
 }
+
 class AnnotB extends Annot {
   const AnnotB();
 }
+
 class AnnotC {
   const AnnotC({bool named: false});
 }
+
 const a1 = const Annot();
 const a2 = 32;
 const a3 = const AnnotB();
 
 class G {
   int a;
-  @a1 int b;
+  @a1
+  int b;
   int c;
-  @a2 int d;
+  @a2
+  int d;
 }
 
 class H extends G {
   int e;
-  @a1 int f;
-  @a1 int g;
-  @a2 int h;
-  @a3 int i;
+  @a1
+  int f;
+  @a1
+  int g;
+  @a2
+  int h;
+  @a3
+  int i;
 }
 
 class K {
-  @AnnotC(named: true) int k;
-  @AnnotC() int k2;
+  @AnnotC(named: true)
+  int k;
+  @AnnotC()
+  int k2;
 }
 
 abstract class L {
@@ -438,6 +453,9 @@ abstract class L {
 
 class L2 extends L {
   int m;
-  incM() { ++m; }
+  incM() {
+    ++m;
+  }
+
   int n;
 }
