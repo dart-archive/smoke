@@ -293,7 +293,7 @@ class _DeclarationCode extends ConstExpression {
 
   List<String> get librariesUsed => <String>[]
     ..addAll(type.librariesUsed)
-    ..addAll(new List<String>.from(annotations.expand((a) => a.librariesUsed)));
+    ..addAll(annotations.expand((a) => a.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();
@@ -414,10 +414,8 @@ class ConstructorExpression extends ConstExpression {
       this.importUrl, this.name, this.positionalArgs, this.namedArgs);
 
   List<String> get librariesUsed => <String>[importUrl]
-    ..addAll(
-        new List<String>.from(positionalArgs.expand((e) => e.librariesUsed)))
-    ..addAll(
-        new List<String>.from(namedArgs.values.expand((e) => e.librariesUsed)));
+    ..addAll(positionalArgs.expand/*<String>*/((e) => e.librariesUsed))
+    ..addAll(namedArgs.values.expand/*<String>*/((e) => e.librariesUsed));
 
   String asCode(Map<String, String> libraryPrefixes) {
     var sb = new StringBuffer();

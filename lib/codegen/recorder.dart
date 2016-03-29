@@ -259,8 +259,9 @@ class Recorder {
     // [node] is the initialization expression, we walk up to get to the actual
     // member declaration where the metadata is attached to.
     while (node is! ClassMember) node = node.parent;
-    return new List<ConstExpression>.from(
-        (node as ClassMember).metadata.map(_convertAnnotation).toList());
+    return (node as ClassMember)
+        .metadata
+        .map/*<ConstExpression>*/(_convertAnnotation);
   }
 
   /// Converts annotations into [ConstExpression]s supported by the codegen
