@@ -5,7 +5,7 @@
 @TestOn('vm')
 library smoke.test.codegen.recorder_test;
 
-import 'package:analyzer/src/generated/element.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:smoke/codegen/generator.dart';
 import 'package:smoke/codegen/recorder.dart';
 import 'package:test/test.dart';

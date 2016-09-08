@@ -14,8 +14,8 @@
 /// the analyzer into pub transformers.
 library smoke.codegen.recorder;
 
-import 'package:analyzer/src/generated/element.dart';
-import 'package:analyzer/src/generated/ast.dart';
+import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'generator.dart';
 
 typedef String ImportUrlResolver(LibraryElement lib);

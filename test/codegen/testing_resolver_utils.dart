@@ -8,7 +8,7 @@
 // using the test helpers in `package:transformer_test/utils.dart`.
 library smoke.test.codegen.testing_resolver_utils;
 
-import 'package:analyzer/src/generated/element.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/src/generated/engine.dart';
 import 'package:analyzer/src/generated/java_io.dart';
 import 'package:analyzer/src/generated/source.dart';
