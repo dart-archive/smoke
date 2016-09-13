@@ -89,8 +89,7 @@ main() {
       recorder.lookupParent(lib.getType('F2'));
       recorder.lookupParent(lib.getType('G'));
       recorder.lookupParent(lib.getType('H'));
-      var coreLib =
-          lib.visibleLibraries.firstWhere((l) => l.displayName == 'dart.core');
+      var coreLib = lib.context.typeProvider.objectType.element.library;
       recorder.lookupParent(coreLib.getType('int'));
       recorder.lookupParent(coreLib.getType('num'));
 
