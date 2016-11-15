@@ -22,3 +22,8 @@ dev_dependencies:
   transformer_test: "^0.2.0"
 environment:
   sdk: ">=1.12.0 <2.0.0"
+dependency_overrides:
+  analyzer:
+    path: /Users/brianwilkerson/src/dart/sdk/sdk/pkg/analyzer
+  front_end:
+    path: /Users/brianwilkerson/src/dart/sdk/sdk/pkg/front_end

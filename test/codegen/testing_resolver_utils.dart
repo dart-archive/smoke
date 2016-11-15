@@ -9,10 +9,11 @@
 library smoke.test.codegen.testing_resolver_utils;
 
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/file_system/physical_file_system.dart';
+import 'package:analyzer/src/dart/sdk/sdk.dart';
 import 'package:analyzer/src/generated/engine.dart';
-import 'package:analyzer/src/generated/java_io.dart';
+import 'package:analyzer/src/generated/sdk.dart';
 import 'package:analyzer/src/generated/source.dart';
-import 'package:analyzer/src/generated/sdk_io.dart' show DirectoryBasedDartSdk;
 import 'package:transformer_test/utils.dart' show testingDartSdkDirectory;
 
 class LibraryProvider {
@@ -25,14 +26,20 @@ class LibraryProvider {
 
 LibraryProvider initAnalyzer(Map<String, String> contents) {
   AnalysisEngine.instance.processRequiredPlugins();
+  var resourceProvider = PhysicalResourceProvider.INSTANCE;
   var analyzer = AnalysisEngine.instance.createAnalysisContext();
   var options = new AnalysisOptionsImpl()
-    ..cacheSize = 256
     ..preserveComments = false
     ..analyzeFunctionBodies = false;
   analyzer.analysisOptions = options;
-  var sdk = new DirectoryBasedDartSdk(new JavaFile(testingDartSdkDirectory));
-  sdk.context.analysisOptions = options;
+  var manager = new DartSdkManager(null, false);
+  var sdk = manager.getSdk(
+      new SdkDescription([testingDartSdkDirectory], options),
+      () => new FolderBasedDartSdk(resourceProvider,
+          resourceProvider.getFolder(testingDartSdkDirectory)));
+//  var sdk = new FolderBasedDartSdk(
+//      resourceProvider, resourceProvider.getFolder(testingDartSdkDirectory));
+//  sdk.context.analysisOptions = options;
   var changes = new ChangeSet();
   var allSources = <String, Source>{};
   contents.forEach((url, code) {
