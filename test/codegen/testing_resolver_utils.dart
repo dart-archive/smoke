@@ -32,14 +32,16 @@ LibraryProvider initAnalyzer(Map<String, String> contents) {
     ..preserveComments = false
     ..analyzeFunctionBodies = false;
   analyzer.analysisOptions = options;
-  var manager = new DartSdkManager(null, false);
+  var manager = new DartSdkManager(null, false, (options) {
+    DartSdk sdk = new FolderBasedDartSdk(resourceProvider,
+      resourceProvider.getFolder(testingDartSdkDirectory));
+    sdk.context.analysisOptions = options;
+    return sdk;
+  });
   var sdk = manager.getSdk(
       new SdkDescription([testingDartSdkDirectory], options),
       () => new FolderBasedDartSdk(resourceProvider,
           resourceProvider.getFolder(testingDartSdkDirectory)));
-//  var sdk = new FolderBasedDartSdk(
-//      resourceProvider, resourceProvider.getFolder(testingDartSdkDirectory));
-//  sdk.context.analysisOptions = options;
   var changes = new ChangeSet();
   var allSources = <String, Source>{};
   contents.forEach((url, code) {

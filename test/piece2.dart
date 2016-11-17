@@ -5,8 +5,9 @@
 /// Part of the static_in_pieces_test
 library smoke.test.piece2;
 
-import 'package:smoke/smoke.dart' show Declaration, PROPERTY, METHOD;
-import 'package:smoke/static.dart' show useGeneratedCode, StaticConfiguration;
+import 'package:smoke/smoke.dart' show Declaration;
+import 'package:smoke/static.dart' show StaticConfiguration;
+
 import 'common.dart' as smoke_0;
 
 final configuration = new StaticConfiguration(checkedMode: false, getters: {
@@ -17,7 +18,9 @@ final configuration = new StaticConfiguration(checkedMode: false, getters: {
   },
 }, parents: {}, declarations: {
   smoke_0.A: {},
-  smoke_0.B: {#a: const Declaration(#a, smoke_0.A),},
+  smoke_0.B: {
+    #a: const Declaration(#a, smoke_0.A),
+  },
   smoke_0.K: {
     #k: const Declaration(#k, int,
         annotations: const [const smoke_0.AnnotC(named: true)]),
@@ -25,7 +28,9 @@ final configuration = new StaticConfiguration(checkedMode: false, getters: {
         annotations: const [const smoke_0.AnnotC()]),
   },
 }, staticMethods: {
-  smoke_0.A: {#staticInc: smoke_0.A.staticInc,},
+  smoke_0.A: {
+    #staticInc: smoke_0.A.staticInc,
+  },
 }, names: {
   #i: r'i',
 });
