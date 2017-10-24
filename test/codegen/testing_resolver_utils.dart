@@ -9,10 +9,11 @@
 library smoke.test.codegen.testing_resolver_utils;
 
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/file_system/physical_file_system.dart'
+    show PhysicalResourceProvider;
+import 'package:analyzer/src/dart/sdk/sdk.dart' show FolderBasedDartSdk;
 import 'package:analyzer/src/generated/engine.dart';
-import 'package:analyzer/src/generated/java_io.dart';
 import 'package:analyzer/src/generated/source.dart';
-import 'package:analyzer/src/generated/sdk_io.dart' show DirectoryBasedDartSdk;
 import 'package:transformer_test/utils.dart' show testingDartSdkDirectory;
 
 class LibraryProvider {
@@ -31,8 +32,9 @@ LibraryProvider initAnalyzer(Map<String, String> contents) {
     ..preserveComments = false
     ..analyzeFunctionBodies = false;
   analyzer.analysisOptions = options;
-  var sdk = new DirectoryBasedDartSdk(new JavaFile(testingDartSdkDirectory));
-  sdk.context.analysisOptions = options;
+  var sdk = new FolderBasedDartSdk(PhysicalResourceProvider.INSTANCE,
+      PhysicalResourceProvider.INSTANCE.getFolder(testingDartSdkDirectory));
+  sdk.analysisOptions = options;
   var changes = new ChangeSet();
   var allSources = <String, Source>{};
   contents.forEach((url, code) {
